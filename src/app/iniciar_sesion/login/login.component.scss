@@ -1,65 +1,40 @@
 .body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70vh;
-  }
-  
-  .panel_sesion {
-    background-color: #ffffff;
-    border: 1px solid #e1e1e1;
-    border-radius: 5px;
-    padding: 2rem;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    width: 100%;
-  }
-  
-  .titulos {
-    text-align: center;
-  }
-  
-  .form-group {
-    margin: 15px 0;
-  }
-  
-  .ingresar_usuario {
-    width: 95%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .checkbox-group {
-    display: flex;
-    align-items: center;
-  }
-  
-  .checkbox-group input[type="checkbox"] {
-    margin-right: 5px;
-  }
-  
-  .boton_ingresar {
-    width: 100%;
-    padding: 10px;
-    background-color: #007BFF;
-    border: none;
-    color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .restablecer_contraseña {
-    text-align: center;
-    margin-top: 2rem;
-    
-  }
-  
-  .olvidar_contraseña {
-    color: #007BFF;
-    text-decoration: none;
-    
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #dbdce4;
+}
 
+.panel_sesion {
+  background-color: #dbdce4;
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+  padding: 2rem;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+  text-align: center; /* Para centrar el contenido */
+}
 
+.avatar-image {
+  width: 100px; /* Ajusta el tamaño de la imagen según tus necesidades */
+  margin-bottom: 20px; /* Espacio entre la imagen y el texto */
+}
+
+.titulo {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.boton_ingresar {
+  width: 100%;
+  padding: 10px;
+  background-color: #07ca7a;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

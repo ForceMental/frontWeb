@@ -10,6 +10,7 @@ import { VentasSectorizadasComponent } from './stats/ventas-sectorizadas/ventas-
 import { VisitasComponent } from './stats/visitas/visitas.component';
 
 
+
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'restore-password', component: RestorePasswordComponent },
