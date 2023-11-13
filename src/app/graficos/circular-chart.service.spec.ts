@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ChartConfigService } from './chart-config.service';
+import { CircularChartService } from './circular-chart.service';
 
 describe('ChartConfigService', () => {
-  let service: ChartConfigService;
+  let service: CircularChartService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ChartConfigService);
+    service = TestBed.inject(CircularChartService);
   });
 
   it('should be created', () => {

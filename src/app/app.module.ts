@@ -26,7 +26,7 @@ import { VentasSectorizadasComponent } from './stats/ventas-sectorizadas/ventas-
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
+    
     LoginComponent,
     RestorePasswordComponent,
     NavegacionComponent,
@@ -35,6 +35,8 @@ import { VentasSectorizadasComponent } from './stats/ventas-sectorizadas/ventas-
     ProductoComponent,
     VisitasComponent,
     VentasSectorizadasComponent,
+    DashboardComponent,
+
     
   ],
   imports: [

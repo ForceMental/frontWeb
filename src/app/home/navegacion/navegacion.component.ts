@@ -12,6 +12,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 export class NavegacionComponent {
   @ViewChild('drawer') drawer!: MatSidenav;
   isMenuOpen = false;
+  showChart = false; // Agregado para manejar la visibilidad del gráfico
 
   isHandset$: Observable<boolean>;
 
@@ -26,13 +27,23 @@ export class NavegacionComponent {
   menuOpened(isOpen: boolean) {
     this.isMenuOpen = isOpen;
   }
+
   toggleSidenavAndMenu() {
     this.drawer.toggle();
-    this.isMenuOpen = false; // Oculta el menú al hacer clic en un elemento de la lista
+    this.isMenuOpen = false;
+    // No estoy seguro de qué hacer aquí, depende de cómo se maneje el gráfico en tu aplicación
+    // Puedes llamar a un método del componente del gráfico si es necesario.
   }
-  
+
   toggleSidenavButton() {
     this.drawer.toggle();
-    this.isMenuOpen = !this.isMenuOpen; // Alterna la visibilidad del menú
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  // Nuevo método para mostrar/ocultar el gráfico
+  toggleChartVisibility(): void {
+    this.showChart = !this.showChart;
+    // Lógica adicional para manejar la visibilidad del gráfico
+    // Puedes llamar a métodos específicos o hacer otras acciones según tus necesidades.
   }
 }

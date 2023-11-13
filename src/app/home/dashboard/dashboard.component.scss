@@ -1,12 +1,5 @@
-.grid-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Ajusta la altura según tus necesidades */
-}
-
 .mat-grid-list {
-  max-width: 1200px; /* Establece un ancho máximo para la lista */
+  max-width: 1200px;
   width: 100%;
 }
 
@@ -16,8 +9,9 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
-  padding: 10px; /* Agrega un poco de espacio interno para que no esté pegado al borde */
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 20px; /* Espacio entre las tarjetas */
 }
 
 .more-button {
@@ -30,15 +24,20 @@
   text-align: center;
 }
 
+/* Agrega estilos para chart-container */
+.chart-container {
+  width: 100%; /* O ajusta según tus necesidades */
+  height: 100%; /* O ajusta según tus necesidades */
+}
+
 /* Añadir reglas para dispositivos más pequeños */
 @media screen and (max-width: 767px) {
   .mat-grid-list {
-    grid-template-columns: 1fr; /* Cambiar a una sola columna en dispositivos más pequeños */
+    grid-template-columns: 1fr;
   }
 
   .dashboard-card {
-    margin: 20px auto; /* Centrar la tarjeta y agregar espacio en la parte superior e inferior */
-    max-width: 90%; /* Ajustar el ancho máximo de la tarjeta */
+    margin: 20px auto;
+    max-width: 90%;
   }
-
 }

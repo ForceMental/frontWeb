@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class ChartConfigService {
+export class CircularChartService {
   getDefaultChartConfig(): any {
+    // Configuración predeterminada para el gráfico circular
     return {
       view: [700, 400],
       gradient: true,
@@ -12,18 +13,17 @@ export class ChartConfigService {
       showLabels: true,
       isDoughnut: false,
       colorScheme: {
-        domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
+        domain: ['#A10A28', '#C7B42C', '#AAAAAA'],
       },
     };
   }
 
   getSampleChartData(): any[] {
+    // Datos de ejemplo para el gráfico circular
     return [
-      { name: 'Germany', value: 8940000 },
-      { name: 'USA', value: 5000000 },
-      { name: 'France', value: 7200000 },
-      { name: 'UK', value: 6200000 },
+      { name: 'Aprobada', value: 156 },
+      { name: 'Pendiente', value: 19 },
+      { name: 'Cancelada', value: 35 },
     ];
   }
 }
-
