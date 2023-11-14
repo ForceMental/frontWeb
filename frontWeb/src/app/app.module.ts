@@ -21,12 +21,25 @@ import { ClienteComponent } from './stats/cliente/cliente.component';
 import { ProductoComponent } from './stats/producto/producto.component';
 import { VisitasComponent } from './stats/visitas/visitas.component';
 import { VentasSectorizadasComponent } from './stats/ventas-sectorizadas/ventas-sectorizadas.component';
+import { AdministracionComponent } from './Administracion/administracion/administracion.component';
+import { ClientesComponent } from './Administracion/administracion/clientes/clientes.component';
+import { ProductosComponent } from './Administracion/administracion/productos/productos.component';
+import { ClienteEditDialogComponent } from './Administracion/administracion/clientes/cliente-edit-dialog/cliente-edit-dialog.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { CommonModule } from '@angular/common'; // Importa CommonModule aquí
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ProductoEditDialogComponent } from './Administracion/administracion/productos/producto-edit-dialog/producto-edit-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
+    // Tus componentes aquí
     AppComponent,
-
+    DashboardComponent,
     LoginComponent,
     RestorePasswordComponent,
     NavegacionComponent,
@@ -35,11 +48,16 @@ import { HttpClientModule } from '@angular/common/http';
     ProductoComponent,
     VisitasComponent,
     VentasSectorizadasComponent,
-    DashboardComponent,
-
-
+    AdministracionComponent,
+    ClientesComponent,
+    ProductosComponent,
+    ClienteEditDialogComponent,
+    ProductoEditDialogComponent
+    // No incluyas módulos en declarations
   ],
   imports: [
+    // Tus módulos aquí
+    CommonModule, // Asegúrate de que esto está en imports, no en declarations
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -52,9 +70,17 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     MatMenuModule,
     NgxChartsModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
     HttpClientModule,
+    MatDialogModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
+  
+
 })
 export class AppModule { }

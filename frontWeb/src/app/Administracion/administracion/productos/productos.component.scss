@@ -1,0 +1,18 @@
+// productos.component.scss
+.productos-container {
+    padding: 20px;
+    table {
+      width: 100%;
+      thead {
+        background-color: #f0f0f0;
+      }
+      th, td {
+        padding: 8px;
+        text-align: left;
+      }
+      button {
+        margin-right: 8px;
+      }
+    }
+  }
+  

@@ -1,0 +1,52 @@
+<!-- clientes.component.html -->
+<div class="clientes-container">
+    <h2>Clientes</h2>
+  
+    <!-- Botón para asignar clientes a ejecutivos -->
+    <button (click)="abrirDialogoAsignacion()">Asignar Cliente</button>
+  
+    <!-- Botón para volver al panel de administración -->
+    <button routerLink="/administracion" class="volver-button">Volver al Panel de Administración</button>
+  
+    <!-- Tabla de clientes -->
+    <mat-table [dataSource]="clientes" class="mat-elevation-z8">
+  
+      <!-- Columna de nombre -->
+      <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let cliente"> {{cliente.nombre}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let cliente"> {{cliente.email}} </mat-cell>
+      </ng-container>
+      
+      
+  
+      <!-- Asegúrate de definir el resto de tus columnas aquí con matColumnDef, mat-header-cell y mat-cell -->
+  
+      <!-- Columna de acciones -->
+      <ng-container matColumnDef="acciones">
+        <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+        <mat-cell *matCellDef="let cliente">
+          <!-- Botón para editar cliente -->
+          <button mat-icon-button (click)="editarCliente(cliente)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <!-- Botón para eliminar cliente -->
+          <button mat-icon-button (click)="eliminarCliente(cliente)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <!-- Botón para asignar ejecutivo -->
+          <button mat-icon-button (click)="abrirDialogoAsignacion(cliente)">
+            <mat-icon>person_add</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+  
+      <!-- Encabezados y filas de la tabla -->
+      <mat-header-row *matHeaderRowDef="columnasMostradas"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columnasMostradas;"></mat-row>
+    </mat-table>
+  </div>
+  

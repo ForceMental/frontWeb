@@ -8,23 +8,26 @@ import { EjecutivoVentasComponent } from './stats/ejecutivo-ventas/ejecutivo-ven
 import { ProductoComponent } from './stats/producto/producto.component';
 import { VentasSectorizadasComponent } from './stats/ventas-sectorizadas/ventas-sectorizadas.component';
 import { VisitasComponent } from './stats/visitas/visitas.component';
-
+import { AdministracionComponent } from './Administracion/administracion/administracion.component';  
+import { ClientesComponent } from './Administracion/administracion/clientes/clientes.component'; 
+import { ProductosComponent } from './Administracion/administracion/productos/productos.component';  
 
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'restore-password', component: RestorePasswordComponent },
   { path: 'navegacion', component: NavegacionComponent },
-  { path:  'cliente', component: ClienteComponent },
-  { path:  'ejecutivo-ventas', component: EjecutivoVentasComponent },
-  { path:  'productos', component: ProductoComponent },
-  { path:  'ventas-sectorizadas', component: VentasSectorizadasComponent },
-  { path:  'visitas', component: VisitasComponent },
+  { path: 'cliente', component: ClienteComponent },
+  { path: 'ejecutivo-ventas', component: EjecutivoVentasComponent },
+  { path: 'ventas-sectorizadas', component: VentasSectorizadasComponent },
+  { path: 'visitas', component: VisitasComponent },
+  { path: 'clientes', component: ClientesComponent },
+  { path: 'productos', component: ProductosComponent },
+  { path: 'administracion', component: AdministracionComponent },
+  { path: 'productos', component: ProductoComponent },
   
-
   
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

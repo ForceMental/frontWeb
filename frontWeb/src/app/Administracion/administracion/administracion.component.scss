@@ -1,0 +1,74 @@
+.admin-panel {
+  background-color: #7ca9f7; // Considera un tono más suave si es muy brillante
+  color: #ffffff;
+  min-height: 100vh;
+  width: 100%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; // Cambiado a flex-start para no centrar en dispositivos de pantalla alta
+  font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; // 'Roboto' es una buena elección si está disponible
+}
+
+.admin-heading {
+  font-size: 2rem; // Usa unidades relativas para mejor escalabilidad
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 40px 0; // Agrega un poco de espacio arriba y abajo
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+nav ul li a {
+  background-color: #5b8def; // Un color de fondo para los elementos de la lista
+  color: #ffffff;
+  padding: 15px 20px; // Ajuste el relleno según sea necesario
+  text-decoration: none;
+  display: flex; // Centra el texto verticalmente y agrega espacio para iconos si es necesario
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+nav ul li a:hover, nav ul li a:focus {
+  background-color: #1D5A8C;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-logo {
+  margin-top: auto; // Si quieres que el logo esté al final del contenido y no fijo
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0; // Espaciado alrededor del logo
+}
+
+.footer-logo img {
+  max-width: 150px; // Ajusta según sea necesario
+  height: auto;
+  opacity: 0.9;
+}
+
+// Media queries para la responsividad
+@media (max-width: 768px) {
+  .admin-panel {
+    padding: 15px;
+  }
+
+  .admin-heading {
+    font-size: 1.5rem;
+  }
+
+  nav ul {
+    max-width: 100%;
+  }
+}
