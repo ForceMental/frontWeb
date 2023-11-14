@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,12 +21,12 @@ import { ClienteComponent } from './stats/cliente/cliente.component';
 import { ProductoComponent } from './stats/producto/producto.component';
 import { VisitasComponent } from './stats/visitas/visitas.component';
 import { VentasSectorizadasComponent } from './stats/ventas-sectorizadas/ventas-sectorizadas.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
+
     LoginComponent,
     RestorePasswordComponent,
     NavegacionComponent,
@@ -35,7 +35,9 @@ import { VentasSectorizadasComponent } from './stats/ventas-sectorizadas/ventas-
     ProductoComponent,
     VisitasComponent,
     VentasSectorizadasComponent,
-    
+    DashboardComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,9 @@ import { VentasSectorizadasComponent } from './stats/ventas-sectorizadas/ventas-
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    NgxChartsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
