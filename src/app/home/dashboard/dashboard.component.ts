@@ -30,10 +30,27 @@ export class DashboardComponent implements OnInit {
     // Configuración para el gráfico circular
     this.view = this.circularChartService.getDefaultChartConfig().view;
     this.colorScheme = this.circularChartService.getDefaultChartConfig().colorScheme;
-    this.single = this.circularChartService.getSampleChartData();
+    this.circularChartService.getSampleChartData().subscribe(
+      (data) => {
+        // Asigna los datos a tu variable single
+        this.single = data;
+      },
+      (error) => {
+        console.error('Error obteniendo los datos:', error);
+      }
+    );
 
     // Configuración para el gráfico de barras
-    this.barChartData = this.verticalBarChartService.getSampleChartData();
+    this.verticalBarChartService.getSampleChartData().subscribe(
+      (data) => {
+        // Asigna los datos a tu variable single
+        this.barChartData  = data;
+        console.log(this.barChartData);
+      },
+      (error) => {
+        console.error('Error obteniendo los datos:', error);
+      }
+    );
     this.barChartConfig = this.verticalBarChartService.getDefaultChartConfig();
 
     // Agrega el siguiente código para imprimir los datos en la consola

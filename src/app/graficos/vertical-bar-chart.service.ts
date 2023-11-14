@@ -1,12 +1,14 @@
 // vertical-bar-chart.service.ts
 import { Injectable } from '@angular/core';
+import { Observable, map } from 'rxjs';
+import { DataService } from '../services/data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VerticalBarChartService {
 
-  constructor() { }
+  constructor(private service: DataService) { }
 
   getDefaultChartConfig(): any {
     return {
@@ -25,34 +27,27 @@ export class VerticalBarChartService {
     };
   }
 
-  getSampleChartData(): any[] {
-    // Proporciona los datos de ejemplo para el gráfico de barras verticales
-    return [
-      {
-        name: 'Camara 4k',
-        series: [
-          { name: 'chile', value: 200 },
-          { name: 'Country 2', value: 450 },
-          { name: 'Country 3', value: 100 },
-        ]
-      },
-      {
-        name: 'Radar',
-        series: [
-          { name: 'Country 1', value: 350 },
-          { name: 'Country 2', value: 200 },
-          { name: 'Country 3', value: 300 },
-        ]
-      },
-      {
-        name: 'camara wifi',
-        series: [
-          { name: 'Country 1', value: 100 },
-          { name: 'Country 2', value: 50 },
-          { name: 'Country 3', value: 200 },
-        ]
-      }
-    ];
+  getSampleChartData(): Observable<any[]> {
+    // Realiza la solicitud HTTP para obtener los datos de servicio_venta
+    return this.service.obtenerDatos().pipe(
+      map((data: any) => {
+        // Formatea los datos para el gráfico de acuerdo a tus necesidades
+        const sumaProductos = data.suma_productos;
+        const chartData: any[] = [];
+
+        for (const key in sumaProductos) {
+          if (sumaProductos.hasOwnProperty(key)) {
+            const producto = sumaProductos[key];
+            chartData.push({
+              name: producto.nombre,
+              value: producto.cantidad
+            });
+          }
+        }
+
+        return chartData;
+      })
+    );
   }
 }
 

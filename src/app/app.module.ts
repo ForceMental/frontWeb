@@ -21,12 +21,12 @@ import { ClienteComponent } from './stats/cliente/cliente.component';
 import { ProductoComponent } from './stats/producto/producto.component';
 import { VisitasComponent } from './stats/visitas/visitas.component';
 import { VentasSectorizadasComponent } from './stats/ventas-sectorizadas/ventas-sectorizadas.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    
+
     LoginComponent,
     RestorePasswordComponent,
     NavegacionComponent,
@@ -37,7 +37,7 @@ import { VentasSectorizadasComponent } from './stats/ventas-sectorizadas/ventas-
     VentasSectorizadasComponent,
     DashboardComponent,
 
-    
+
   ],
   imports: [
     BrowserModule,
@@ -52,6 +52,7 @@ import { VentasSectorizadasComponent } from './stats/ventas-sectorizadas/ventas-
     MatCardModule,
     MatMenuModule,
     NgxChartsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
