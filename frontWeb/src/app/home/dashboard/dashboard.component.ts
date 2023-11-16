@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   barChartData: any[] = [];
   barChartConfig: any;
   pieChartData: any[] = [];
-  numberCardData$: Observable<any>;  // Utiliza el símbolo $ para indicar que es un Observable
+  numberCardData$: Observable<any>;  
   numberCardConfig: any;
   cardColor: string = '#232837';
   gradient: boolean = false;
@@ -45,7 +45,9 @@ export class DashboardComponent implements OnInit {
     this.numberCardData$ = this.numberCardService.getNumberCardData();
   }
   
-
+// En el componente DashboardComponent
+  showCircularChartCard = false;
+  showVentasProductosCard = false; 
   ngOnInit(): void {
     this.view = this.circularChartService.getDefaultChartConfig().view;
     this.colorScheme = this.circularChartService.getDefaultChartConfig().colorScheme;
@@ -79,7 +81,7 @@ export class DashboardComponent implements OnInit {
     );
 
     this.numberCardConfig = this.numberCardService.getNumberCardConfig();
-    this.numberCardData$ = this.numberCardService.getNumberCardData();  // Usa el observable
+    this.numberCardData$ = this.numberCardService.getNumberCardData();  
 
     console.log('Datos para el gráfico de barras:', this.barChartData);
     console.log('Configuración para el gráfico de barras:', this.barChartConfig);
@@ -118,4 +120,31 @@ export class DashboardComponent implements OnInit {
   onDeactivate(event: any): void {
     console.log('Deactivate', event);
   }
+
+  toggleSidenavAndMenu(menuItem: string): void {
+    console.log(`Menú seleccionado: ${menuItem}`);
+    
+    // Lógica para mostrar/ocultar las cards según el menú seleccionado
+    switch (menuItem) {
+      case 'Visitas':
+        this.showCircularChartCard = true;
+        this.showVentasProductosCard = false; // Oculta las otras cards
+        // Agrega lógica similar para otras cards si es necesario
+        break;
+      case 'VentasProductos':
+        this.showCircularChartCard = false;
+        this.showVentasProductosCard = true;
+        // Agrega lógica similar para otras cards si es necesario
+        break;
+      default:
+        // Si no es ninguno de los menús específicos, oculta todas las cards
+        this.showCircularChartCard = false;
+        this.showVentasProductosCard = false;
+        // Agrega lógica similar para otras cards si es necesario
+        break;
+    }
+   
+  }
+
+  
 }

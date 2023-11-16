@@ -11,9 +11,17 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class NavegacionComponent {
   @ViewChild('drawer') drawer!: MatSidenav;
+  
   isMenuOpen = false;
   showChart = false; // Agregado para manejar la visibilidad del gráfico
 
+  // Propiedad para controlar la visibilidad de las cards
+  showCards = false;
+
+  // Propiedad para controlar la visibilidad de la card del gráfico circular
+  showCircularChartCard = false;
+
+  
   isHandset$: Observable<boolean>;
 
   constructor(private breakpointObserver: BreakpointObserver) {
@@ -28,22 +36,38 @@ export class NavegacionComponent {
     this.isMenuOpen = isOpen;
   }
 
-  toggleSidenavAndMenu() {
-    this.drawer.toggle();
-    this.isMenuOpen = false;
-    // No estoy seguro de qué hacer aquí, depende de cómo se maneje el gráfico en tu aplicación
-    // Puedes llamar a un método del componente del gráfico si es necesario.
+  
+  toggleSidenavAndMenu(menuItem: string): void {
+    console.log(`Menú seleccionado: ${menuItem}`);
+    
+    
+    if (menuItem === 'Visitas') {
+      this.showCircularChartCard = true;
+    } else {
+      this.showCircularChartCard = false;
+    }
+  
+    // Lógica para abrir/cerrar el menú
+    if (this.isHandset$) {
+      this.drawer.toggle();
+    }
   }
 
-  toggleSidenavButton() {
-    this.drawer.toggle();
-    this.isMenuOpen = !this.isMenuOpen;
+  handleVisitaClicked(): void {
+    
+    console.log('Botón de Visitas clickeado');
+    
+    this.showCards = true; 
   }
 
   // Nuevo método para mostrar/ocultar el gráfico
   toggleChartVisibility(): void {
     this.showChart = !this.showChart;
-    // Lógica adicional para manejar la visibilidad del gráfico
-    // Puedes llamar a métodos específicos o hacer otras acciones según tus necesidades.
+   
+  }
+
+  onChartSelected(event: any): void {
+    // Lógica para manejar la selección del gráfico
+    console.log('Gráfico seleccionado:', event);
   }
 }
