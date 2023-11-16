@@ -3,7 +3,10 @@ import { ClientesService } from './clientes.service';
 import { Cliente } from './cliente.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ClienteEditDialogComponent } from './cliente-edit-dialog/cliente-edit-dialog.component';
-import { HttpErrorResponse } from '@angular/common/http';  // No es necesario importar HttpClient si no lo estás utilizando directamente
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NuevoClienteDialogComponent } from './nuevo-cliente-dialog/nuevo-cliente-dialog.component';
 
 @Component({
   selector: 'app-clientes',
@@ -12,74 +15,134 @@ import { HttpErrorResponse } from '@angular/common/http';  // No es necesario im
 })
 export class ClientesComponent implements OnInit {
   clientes: Cliente[] = [];
-  columnasMostradas: string[] = ['nombre', 'email', 'acciones'];
+  columnasMostradas: string[] = ['nombre', 'apellido', 'telefono', 'correo_electronico', 'direccion', 'comuna', 'rut', 'acciones'];
 
-  constructor(private clientesService: ClientesService, public dialog: MatDialog) {}
+  constructor(
+    private clientesService: ClientesService,
+    public dialog: MatDialog,
+    private httpClient: HttpClient,
+    private snackBar: MatSnackBar
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.cargarClientes();
   }
 
-  cargarClientes() {
-    this.clientesService.getClientes().subscribe({
-      next: data => { this.clientes = data; },
-      error: (error: HttpErrorResponse) => {
+  cargarClientes(): void {
+    this.clientesService.getClientes().subscribe(
+      data => {
+        this.clientes = data.map(item => new Cliente(item));
+        console.log("Clientes cargados:", this.clientes);
+      },
+      (error: HttpErrorResponse) => {
         console.error('Error al obtener los clientes:', error.message);
+      }
+    );
+  }
+
+  abrirDialogoEditar(cliente: Cliente): void {
+    console.log("Cliente a editar:", cliente);
+    const dialogRef = this.dialog.open(ClienteEditDialogComponent, {
+      width: '250px',
+      data: cliente
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log("Datos del cliente a actualizar:", result);
+        this.actualizarCliente(result);
       }
     });
   }
-  
 
-  abrirDialogoAsignacion(cliente?: Cliente) {
-    const dialogRef = this.dialog.open(ClienteEditDialogComponent, {
-      width: '250px',
-      data: cliente || new Cliente()
+  actualizarCliente(cliente: Cliente): void {
+    this.clientesService.updateCliente(cliente).subscribe(
+      updatedCliente => {
+        const index = this.clientes.findIndex(c => c.id === updatedCliente.id);
+        if (index !== -1) {
+          this.clientes[index] = updatedCliente;
+          console.log("Cliente actualizado con éxito:", updatedCliente);
+        }
+      },
+      error => console.error('Error al actualizar cliente:', error)
+    );
+  }
+
+  abrirDialogoNuevoCliente(): void {
+    const dialogRef = this.dialog.open(NuevoClienteDialogComponent, {
+      width: '250px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Lógica para asignar el cliente a un ejecutivo
+        this.clientesService.addCliente(result).subscribe(
+          nuevoCliente => {
+            this.clientes.push(nuevoCliente);
+            this.snackBar.open('Cliente agregado con éxito', 'Cerrar', { duration: 3000 });
+          },
+          error => {
+            console.error('Error al agregar cliente:', error);
+            this.snackBar.open('Error al agregar cliente', 'Cerrar', { duration: 3000 });
+          }
+        );
       }
     });
   }
 
-  abrirDialogoEditar(cliente: Cliente): void {
-    // Lógica para abrir el diálogo de edición
-    // ...
-  }
-
   editarCliente(cliente: Cliente): void {
+    // Validar si el cliente tiene un ID válido
+    if (!cliente || typeof cliente.id !== 'number') {
+      this.snackBar.open('Cliente inválido o no seleccionado', 'Cerrar', { duration: 3000 });
+      return;
+    }
+
+    // Abrir el diálogo de edición con los datos del cliente seleccionado
     const dialogRef = this.dialog.open(ClienteEditDialogComponent, {
       width: '250px',
       data: cliente
     });
 
-    dialogRef.afterClosed().subscribe({
-      next: (result: Cliente) => {
-        if (result) {
-          this.clientesService.updateCliente(result).subscribe({
-            next: (updatedCliente: Cliente) => {
-              const index = this.clientes.findIndex(c => c.id === updatedCliente.id);
-              if (index !== -1) {
-                this.clientes[index] = updatedCliente;
-              }
-            },
-            error: (error: any) => console.error(error)
-          });
-        }
-      },
-      error: (error: any) => console.error(error)
+    // Manejar el cierre del diálogo
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Aquí puedes manejar lo que sucede después de editar el cliente
+        this.clientesService.updateCliente(result).subscribe(
+          updatedCliente => {
+            // Actualizar la lista de clientes
+            const index = this.clientes.findIndex(c => c.id === updatedCliente.id);
+            if (index !== -1) {
+              this.clientes[index] = updatedCliente;
+            }
+            this.snackBar.open('Cliente actualizado con éxito', 'Cerrar', { duration: 3000 });
+          },
+          error => {
+            console.error('Error al actualizar el cliente:', error);
+            this.snackBar.open('Error al actualizar el cliente', 'Cerrar', { duration: 3000 });
+          }
+        );
+      }
     });
-    
-  }
-  
-  eliminarCliente(cliente: Cliente): void {
-    // Lógica para eliminar un cliente
-    // ...
   }
 
-  asignarEjecutivo(cliente: Cliente, ejecutivoId: string): void {
-    // Lógica para asignar un ejecutivo a un cliente
-    // ...
+  eliminarCliente(cliente: Cliente): void {
+    const confirmDialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { title: 'Confirmar Eliminación', message: `¿Estás seguro de que quieres eliminar a ${cliente.nombre}?` }
+    });
+
+    confirmDialogRef.afterClosed().subscribe(result => {
+      if (result && cliente.id) {
+        this.clientesService.deleteCliente(cliente.id).subscribe(
+          () => {
+            this.clientes = this.clientes.filter(c => c.id !== cliente.id);
+            this.snackBar.open('Cliente eliminado con éxito', 'Cerrar', { duration: 3000 });
+          },
+          error => {
+            console.error('Error al eliminar el cliente:', error);
+            this.snackBar.open('Error al eliminar el cliente', 'Cerrar', { duration: 3000 });
+          }
+        );
+      }
+    });
   }
+  
 }

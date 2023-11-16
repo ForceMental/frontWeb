@@ -1,35 +1,41 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, Inject } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Cliente } from '../cliente.model';// Asegúrate de que la ruta al modelo de Cliente sea correcta
+import { Cliente } from '../cliente.model';
 
 @Component({
   selector: 'app-cliente-edit-dialog',
-  templateUrl: './cliente-edit-dialog.component.html'
+  templateUrl: './cliente-edit-dialog.component.html',
+  styleUrls: ['./cliente-edit-dialog.component.scss']
 })
 export class ClienteEditDialogComponent {
-  clienteForm: FormGroup;
+  editForm: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<ClienteEditDialogComponent>,
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef<ClienteEditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Cliente
   ) {
-    this.clienteForm = new FormGroup({
-      nombre: new FormControl(data.nombre),
-      email: new FormControl(data.email),
-      // Agrega controles para las propiedades restantes del cliente
+    this.editForm = this.fb.group({
+      id: [data.id], // Asegúrate de que el ID está incluido
+      nombre: [data.nombre],
+      apellido: [data.apellido],
+      telefono: [data.telefono],
+      correo_electronico: [data.correo_electronico],
+      direccion: [data.direccion],
+      comuna: [data.comuna ? data.comuna.nombre_comuna : '']
+      // ...otros campos
     });
   }
 
-  onNoClick(): void {
+  onCancel(): void {
     this.dialogRef.close();
   }
 
-  guardarCliente(): void {
-    if (this.clienteForm.valid) {
-      // Llama a tu servicio de cliente para guardar los cambios
-      // o usa dialogRef.close() para devolver los datos actualizados
-      this.dialogRef.close(this.clienteForm.value);
+  onSave(): void {
+    if (this.editForm.valid) {
+      this.dialogRef.close(this.editForm.value); // Esto devolverá todos los valores del formulario, incluyendo el id
     }
   }
+  
 }

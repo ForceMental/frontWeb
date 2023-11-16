@@ -3,10 +3,10 @@ export class Cliente {
     nombre: string = '';
     apellido: string = '';
     telefono: string = '';
-    email: string = '';
+    correo_electronico: string = '';
     direccion: string = '';
     rut: string = '';
-    comuna?: number;
+    comuna?: { id: number; nombre_comuna: string; };
   
     constructor(init?: Partial<Cliente>) {
       Object.assign(this, init);

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { Cliente } from './cliente.model'; // Asegúrate de crear un modelo para Cliente
+import { Cliente } from './cliente.model'; // modelo para Cliente
 import { catchError } from 'rxjs/operators';
 
 
@@ -30,11 +30,24 @@ export class ClientesService {
     return this.http.post<Cliente>(this.apiUrl, cliente);
   }
 
+  onSave(cliente: Cliente) {
+    console.log("Cliente a actualizar:", cliente);
+    // Resto del código...
+  }
+  
+
   // Actualizar un cliente
   updateCliente(cliente: Cliente): Observable<Cliente> {
-    return this.http.put<Cliente>(`${this.apiUrl}/${cliente.id}`, cliente);
+    if ((!cliente.id)) {
+      console.error('No se puede actualizar el cliente sin un ID válido');
+      return this.http.put<Cliente>(`${this.apiUrl}/${cliente.id}`, cliente);
+    } else {
+      // Lanza un error o maneja esta situación de alguna manera
+      console.error("No se puede actualizar el cliente sin un ID válido");
+      return throwError("Cliente sin ID válido");
+    }
   }
-
+  
   // Eliminar un cliente
   deleteCliente(id: number): Observable<Cliente> {
     return this.http.delete<Cliente>(`${this.apiUrl}/${id}`);

@@ -1,0 +1,24 @@
+.clientes-container {
+    padding: 20px;
+    background-color: #f7f7f7;
+  
+    .mat-table {
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  
+      .mat-header-row, .mat-row {
+        min-height: 48px;
+      }
+  
+      .mat-cell, .mat-header-cell {
+        padding: 8px 16px;
+      }
+    }
+  
+    .action-buttons {
+      button {
+        margin-right: 8px;
+      }
+    }
+  }
+  
