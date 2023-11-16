@@ -1,28 +1,27 @@
-<!-- productos.component.html -->
+
 <div class="productos-container">
-    <h2>Productos</h2>
-    <button (click)="nuevoProducto()">Añadir Producto</button>
-    <button routerLink="/administracion" class="volver-button">Volver al Panel de Administración</button>
-    <table class="mat-elevation-z8">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Precio</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let producto of productos">
-          <td>{{ producto.nombre }}</td>
-          <td>{{ producto.descripcion }}</td>
-          <td>{{ producto.precio | currency }}</td>
-          <td>
-            <button (click)="editarProducto(producto)">Editar</button>
-            <button (click)="eliminarProducto(producto.id)">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <h2 class="titulo-productos">Productos</h2>
+  <div class="acciones">
+      <button class="btn btn-accion" (click)="nuevoProducto()">Añadir Producto</button>
+      <button class="btn btn-volver" routerLink="/administracion">Volver al Panel de Administración</button>
   </div>
-  
+  <table class="tabla-productos mat-elevation-z8">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Stock</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of productos">
+        <td><p>{{ producto.nombre_producto }}</p></td>
+        <td>{{ producto.stock_producto}}</td>
+        <td class="acciones-celda">
+          <button class="btn btn-editar" (click)="editarProducto(producto)">Editar</button>
+          <button class="btn btn-eliminar" (click)="eliminarProducto(producto.id_producto)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

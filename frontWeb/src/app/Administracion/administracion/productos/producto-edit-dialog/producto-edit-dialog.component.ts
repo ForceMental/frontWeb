@@ -18,8 +18,8 @@ export class ProductoEditDialogComponent {
   ) {
     // Inicializa el formulario con los datos del producto o vacío si es nuevo
     this.form = new FormGroup({
-      nombre: new FormControl(this.data.producto?.nombre || '', [Validators.required]),
-      descripcion: new FormControl(this.data.producto?.descripcion || ''),
+      nombre: new FormControl(this.data.producto?.nombre_producto || '', ),
+      stock: new FormControl(this.data.producto?.stock_producto || ''),
       // ... otros campos del producto
     });
   }

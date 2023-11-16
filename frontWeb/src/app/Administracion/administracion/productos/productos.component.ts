@@ -11,8 +11,8 @@ import { ProductoEditDialogComponent } from './producto-edit-dialog/producto-edi
   styleUrls: ['./productos.component.scss']
 })
 export class ProductosComponent implements OnInit {
-  productos: Producto[] = [];
-  
+  productos: any;
+
   constructor(
     private productosService: ProductosService,
     public dialog: MatDialog
@@ -41,8 +41,14 @@ export class ProductosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
+      const producto: Producto = {
+        nombre_producto: result.nombre,
+        stock_producto: result.stock,
+        categoria:  1
+      }
+      console.log(producto);
       if (result) {
-        this.productosService.addProducto(result).subscribe(() => {
+        this.productosService.addProducto(producto).subscribe(() => {
           this.cargarProductos(); // Recargar la lista de productos
         });
       }
@@ -56,8 +62,15 @@ export class ProductosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
+      const product: Producto = {
+        id_producto: producto.id_producto,
+        nombre_producto: result.nombre,
+        stock_producto: result.stock,
+        categoria:  1
+      }
+
       if (result) {
-        this.productosService.updateProducto(result).subscribe(() => {
+        this.productosService.updateProducto(product).subscribe(() => {
           this.cargarProductos(); // Recargar la lista de productos
         });
       }
@@ -66,6 +79,7 @@ export class ProductosComponent implements OnInit {
 
   eliminarProducto(id: number) {
     // Confirmar eliminación antes de realizarla
+    console.log(id);
     if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
       this.productosService.deleteProducto(id).subscribe(() => {
         this.cargarProductos(); // Recargar la lista de productos

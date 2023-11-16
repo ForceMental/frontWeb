@@ -21,9 +21,11 @@ export class ClienteEditDialogComponent {
       nombre: [data.nombre],
       apellido: [data.apellido],
       telefono: [data.telefono],
+      rut: [data.rut],
       correo_electronico: [data.correo_electronico],
       direccion: [data.direccion],
-      comuna: [data.comuna ? data.comuna.nombre_comuna : '']
+      comuna: [data.comuna],
+      region: [data.region],
       // ...otros campos
     });
   }
@@ -37,5 +39,5 @@ export class ClienteEditDialogComponent {
       this.dialogRef.close(this.editForm.value); // Esto devolverá todos los valores del formulario, incluyendo el id
     }
   }
-  
+
 }

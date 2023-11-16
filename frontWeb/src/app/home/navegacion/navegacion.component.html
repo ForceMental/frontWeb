@@ -3,9 +3,9 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false" (openedChange)="menuOpened($event)">
-      
+
         <mat-toolbar class="title_menu">Menu</mat-toolbar>
-      
+
       <div class="perfil">
         <img class="imagen_avatar" src="assets/icon/Avatar.png" alt="avatar">
         <h3>Felipe Herrera</h3>
@@ -36,15 +36,15 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false" (openedChange)="menuOpened($event)">
-      
+
         <mat-toolbar class="title_menu">Menu</mat-toolbar>
-      
+
       <div class="perfil">
         <img class="imagen_avatar" src="assets/icon/Avatar.png" alt="avatar">
         <h3>Felipe Herrera</h3>
     </div>
     <mat-nav-list class="lista">
-      <button mat-button class="menu-button" (click)="toggleSidenavAndMenu('Cliente')">
+      <!-- <button mat-button class="menu-button" (click)="toggleSidenavAndMenu('Cliente')">
         <mat-icon>person</mat-icon> Cliente
       </button>
       <button mat-button class="menu-button" (click)="toggleSidenavAndMenu('Ejecutivo')">
@@ -55,9 +55,9 @@
       </button>
       <button mat-button class="menu-button" (click)="toggleSidenavAndMenu('Ventas')">
         <mat-icon>shopping_cart</mat-icon> Ventas
-      </button>
+      </button> -->
       <button mat-button class="menu-button" (click)="toggleSidenavAndMenu('Visitas')">
-        <mat-icon>calendar_today</mat-icon> Visitas
+        <mat-icon>calendar_today</mat-icon> Dashboard
       </button>
       <button mat-button class="menu-button" [routerLink]="['/administracion']">
         <mat-icon>settings</mat-icon> Administracion
@@ -76,7 +76,7 @@
       </button>
       <span class="title_dashboard">Dashboard</span>
     </mat-toolbar>
-    
+
     <app-dashboard
   *ngIf="showCircularChartCard"
   (chartSelected)="onChartSelected($event)">
@@ -93,7 +93,7 @@
       </button>
       <span class="title_dashboard">Dashboard</span>
     </mat-toolbar>
-    
+
     <app-dashboard
   *ngIf="showCircularChartCard"
   (chartSelected)="onChartSelected($event)">

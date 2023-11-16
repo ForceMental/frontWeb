@@ -26,18 +26,20 @@ export class ClientesComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarClientes();
+
   }
 
   cargarClientes(): void {
     this.clientesService.getClientes().subscribe(
       data => {
         this.clientes = data.map(item => new Cliente(item));
-        console.log("Clientes cargados:", this.clientes);
+        //console.log("Clientes cargados:", this.clientes);
       },
       (error: HttpErrorResponse) => {
         console.error('Error al obtener los clientes:', error.message);
       }
     );
+
   }
 
   abrirDialogoEditar(cliente: Cliente): void {
@@ -46,7 +48,7 @@ export class ClientesComponent implements OnInit {
       width: '250px',
       data: cliente
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log("Datos del cliente a actualizar:", result);
@@ -56,6 +58,7 @@ export class ClientesComponent implements OnInit {
   }
 
   actualizarCliente(cliente: Cliente): void {
+    console.log(cliente);
     this.clientesService.updateCliente(cliente).subscribe(
       updatedCliente => {
         const index = this.clientes.findIndex(c => c.id === updatedCliente.id);
@@ -91,6 +94,7 @@ export class ClientesComponent implements OnInit {
 
   editarCliente(cliente: Cliente): void {
     // Validar si el cliente tiene un ID válido
+    console.log(cliente.id);
     if (!cliente || typeof cliente.id !== 'number') {
       this.snackBar.open('Cliente inválido o no seleccionado', 'Cerrar', { duration: 3000 });
       return;
@@ -105,6 +109,19 @@ export class ClientesComponent implements OnInit {
     // Manejar el cierre del diálogo
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        console.log(result);
+        const cliente: Cliente = {
+          id: result.id,
+          nombre: result.nombre,
+          apellido: result.apellido,
+          telefono: result.telefono,
+          correo_electronico: result.correo_electronico,
+          direccion: result.direccion,
+          rut: result.rut,
+          comuna: result.comuna,
+          region: 6
+        }
+        console.log(cliente);
         // Aquí puedes manejar lo que sucede después de editar el cliente
         this.clientesService.updateCliente(result).subscribe(
           updatedCliente => {
@@ -144,5 +161,5 @@ export class ClientesComponent implements OnInit {
       }
     });
   }
-  
+
 }

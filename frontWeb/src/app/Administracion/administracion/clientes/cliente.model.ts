@@ -6,10 +6,9 @@ export class Cliente {
     correo_electronico: string = '';
     direccion: string = '';
     rut: string = '';
-    comuna?: { id: number; nombre_comuna: string; };
-  
+    comuna?: number;
+    region?: number;
     constructor(init?: Partial<Cliente>) {
       Object.assign(this, init);
     }
   }
-  
