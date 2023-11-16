@@ -1,9 +1,6 @@
-<h1 mat-dialog-title>Editar Cliente</h1>
-<div mat-dialog-content>
-  <form [formGroup]="editForm">
-
-    <!-- Campo oculto para el ID -->
-    <input type="hidden" formControlName="id">
+<h2 mat-dialog-title>Agregar Nuevo Cliente</h2>
+<mat-dialog-content>
+  <form [formGroup]="nuevoClienteForm">
     <!-- Campo Nombre -->
     <mat-form-field>
       <mat-label>Nombre</mat-label>
@@ -34,18 +31,23 @@
       <input matInput formControlName="direccion">
     </mat-form-field>
 
-    <!-- Campo Comuna -->
+    <!-- Campo RUT -->
     <mat-form-field>
-        <mat-label>Comuna</mat-label>
-        <input matInput formControlName="comuna">
+      <mat-label>RUT</mat-label>
+      <input matInput formControlName="rut">
     </mat-form-field>
 
-
+    <!-- Campo Comuna -->
+    <mat-form-field>
+      <mat-label>Comuna</mat-label>
+      <input matInput formControlName="comuna">
+    </mat-form-field>
 
     <!-- Agrega otros campos según sea necesario -->
+
   </form>
-</div>
-<div mat-dialog-actions>
+</mat-dialog-content>
+<mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancelar</button>
-  <button mat-button (click)="onSave()" cdkFocusInitial>Guardar</button>
-</div>
+  <button mat-button (click)="onSubmit()" [disabled]="nuevoClienteForm.invalid">Agregar</button>
+</mat-dialog-actions>

@@ -29,11 +29,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { CommonModule } from '@angular/common'; // Importa CommonModule aquí
+import { CommonModule } from '@angular/common'; // 
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProductoEditDialogComponent } from './Administracion/administracion/productos/producto-edit-dialog/producto-edit-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ConfirmDialogComponent } from './Administracion/administracion/clientes/confirm-dialog/confirm-dialog.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NuevoClienteDialogComponent } from './Administracion/administracion/clientes/nuevo-cliente-dialog/nuevo-cliente-dialog.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ClientesComponent,
     ProductosComponent,
     ClienteEditDialogComponent,
-    ProductoEditDialogComponent
+    ProductoEditDialogComponent,
+    ConfirmDialogComponent,
+    NuevoClienteDialogComponent,
     // No incluyas módulos en declarations
   ],
   imports: [
@@ -77,6 +82,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     MatDialogModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
