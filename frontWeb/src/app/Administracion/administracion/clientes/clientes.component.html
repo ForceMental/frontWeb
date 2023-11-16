@@ -1,12 +1,10 @@
 <!-- clientes.component.html -->
 <div class="clientes-container">
-    <h2>Clientes</h2>
-  
-    <!-- Botón para asignar clientes a ejecutivos -->
-    <button (click)="abrirDialogoNuevoCliente()">Agregar Nuevo Cliente</button> 
-
-    <!-- Botón para volver al panel de administración -->
+    <h2 class="titulo">Clientes</h2>
+   <div class="acciones">
+    <button (click)="abrirDialogoNuevoCliente()" class="agregar-button">Agregar Nuevo Cliente</button>
     <button routerLink="/administracion" class="volver-button">Volver al Panel de Administración</button>
+  </div>
 
     <!-- Tabla de clientes -->
     <mat-table [dataSource]="clientes" class="mat-elevation-z8">
@@ -48,7 +46,7 @@
       </ng-container>
       
   
-      <!-- Asegúrate de definir el resto de tus columnas aquí con matColumnDef, mat-header-cell y mat-cell -->
+      
   
       <!-- Columna de acciones -->
       <ng-container matColumnDef="acciones">
