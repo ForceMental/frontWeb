@@ -1,7 +1,7 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Cliente } from "c:/Users/fabia/OneDrive/Escritorio/CrudJefatura/frontWeb/src/app/Administracion/administracion/clientes/cliente.model";// Asegúrate de que la ruta al modelo de Cliente sea correcta
+import { Cliente } from '../cliente.model';// Asegúrate de que la ruta al modelo de Cliente sea correcta
 
 @Component({
   selector: 'app-cliente-edit-dialog',

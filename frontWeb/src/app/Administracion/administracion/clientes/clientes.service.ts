@@ -40,10 +40,10 @@ export class ClientesService {
     return this.http.delete<Cliente>(`${this.apiUrl}/${id}`);
   }
 
-  private handleError(error: HttpErrorResponse) {
+  private handleError(error: HttpErrorResponse): Observable<never> {
     // Manejo de errores en el cliente, podrías personalizar esto aún más
     console.error(`Backend returned code ${error.status}, body was: `, error.error);
-    return throwError('Something bad happened; please try again later.');
+    return throwError(() => 'Something bad happened; please try again later.');
   }
 }
 

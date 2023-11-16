@@ -42,6 +42,35 @@
             </ngx-charts-bar-vertical>
           </div>
         </ng-container>
+
+        <!-- Muestra el gráfico circular (Pie Chart) si pieChartVisible es true -->
+        <ng-container *ngIf="card.pieChartVisible && pieChartVisible">
+          <div class="chart-container">
+            <ngx-charts-pie-chart
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="single"
+            [gradient]="gradient"
+            (select)="onSelect($event)"
+            (activate)="onActivate($event)"
+            (deactivate)="onDeactivate($event)">
+            
+            </ngx-charts-pie-chart>
+          </div>
+        </ng-container>
+
+        <!-- Muestra el gráfico circular (Number Card) si pieChartVisible es true -->
+        <ng-container *ngIf="card.numberCardVisible && numberCardChartVisible">
+          <div class="chart-container">
+        <ngx-charts-number-card
+            [view]="view"
+          [scheme]="colorScheme"
+          [results]="single"
+          [cardColor]="cardColor"
+          (select)="onSelect($event)">
+        </ngx-charts-number-card>
+          </div>
+        </ng-container>
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>

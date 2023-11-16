@@ -1,8 +1,13 @@
-import { Component, inject, OnInit } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';  // Añade esta línea para importar Observable
 import { CircularChartService } from 'src/app/graficos/circular-chart.service';
 import { VerticalBarChartService } from 'src/app/graficos/vertical-bar-chart.service';
+import { PieChartService } from 'src/app/graficos/pie-chart.service';
+import { NumberCardService } from 'src/app/graficos/number-card.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -10,29 +15,42 @@ import { VerticalBarChartService } from 'src/app/graficos/vertical-bar-chart.ser
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  private breakpointObserver = inject(BreakpointObserver);
   view: any;
   colorScheme: any;
   single: any[] = [];
-  barChartData: any[] = []; // Datos para el gráfico de barras
-  barChartConfig: any; // Configuración para el gráfico de barras
+  barChartData: any[] = [];
+  barChartConfig: any;
+  pieChartData: any[] = [];
+  numberCardData$: Observable<any>;  // Utiliza el símbolo $ para indicar que es un Observable
+  numberCardConfig: any;
+  cardColor: string = '#232837';
   gradient: boolean = false;
   showChart: boolean = false;
-  circularChartVisible: boolean = true; // Puedes establecer el valor inicial según tus necesidades
-  barChartVisible: boolean = true; // Puedes establecer el valor inicial según tus necesidades
+  circularChartVisible: boolean = true;
+  barChartVisible: boolean = true;
+  pieChartVisible: boolean = true;
+  numberCardChartVisible: boolean = true;
+  showLegend: boolean = true;
+  showLabels: boolean = true;
+  isDoughnut: boolean = false;
+  legendPosition: string = 'below';
 
   constructor(
+    private breakpointObserver: BreakpointObserver,
     private circularChartService: CircularChartService,
-    private verticalBarChartService: VerticalBarChartService
-  ) {}
+    private verticalBarChartService: VerticalBarChartService,
+    private pieChartService: PieChartService,
+    private numberCardService: NumberCardService
+  ) {
+    this.numberCardData$ = this.numberCardService.getNumberCardData();
+  }
+  
 
   ngOnInit(): void {
-    // Configuración para el gráfico circular
     this.view = this.circularChartService.getDefaultChartConfig().view;
     this.colorScheme = this.circularChartService.getDefaultChartConfig().colorScheme;
     this.circularChartService.getSampleChartData().subscribe(
       (data) => {
-        // Asigna los datos a tu variable single
         this.single = data;
       },
       (error) => {
@@ -40,11 +58,9 @@ export class DashboardComponent implements OnInit {
       }
     );
 
-    // Configuración para el gráfico de barras
     this.verticalBarChartService.getSampleChartData().subscribe(
       (data) => {
-        // Asigna los datos a tu variable single
-        this.barChartData  = data;
+        this.barChartData = data;
         console.log(this.barChartData);
       },
       (error) => {
@@ -53,23 +69,40 @@ export class DashboardComponent implements OnInit {
     );
     this.barChartConfig = this.verticalBarChartService.getDefaultChartConfig();
 
-    // Agrega el siguiente código para imprimir los datos en la consola
+    this.pieChartService.getPieChartData().subscribe(
+      (data) => {
+        this.pieChartData = data;
+      },
+      (error) => {
+        console.error('Error obteniendo los datos del gráfico de pie:', error);
+      }
+    );
+
+    this.numberCardConfig = this.numberCardService.getNumberCardConfig();
+    this.numberCardData$ = this.numberCardService.getNumberCardData();  // Usa el observable
+
     console.log('Datos para el gráfico de barras:', this.barChartData);
     console.log('Configuración para el gráfico de barras:', this.barChartConfig);
+    console.log('Datos para el gráfico de pie:', this.pieChartData);
+    console.log('Datos para el NumberCard:', this.numberCardData$);
   }
 
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       if (matches) {
         return [
-          { title: 'Total de Visitas', cols: 1, rows: 1, circularChartVisible: true, barChartVisible: false },
-          { title: 'Ventas de Productos', cols: 1, rows: 1, circularChartVisible: false, barChartVisible: true },
+          { title: 'Total de Visitas', cols: 1, rows: 1, circularChartVisible: true, barChartVisible: false, pieChartVisible: false, numberCardVisible: false },
+          { title: 'Ventas de Productos', cols: 1, rows: 1, circularChartVisible: false, barChartVisible: true, pieChartVisible: false, numberCardVisible: false },
+          { title: 'Tipo de Visitas', cols: 1, rows: 1, circularChartVisible: false, barChartVisible: false, pieChartVisible: true, numberCardVisible: true },
+          { title: 'Venta de Productos por Ejecutivos', cols: 1, rows: 1, circularChartVisible: false, barChartVisible: false, pieChartVisible: false, numberCardVisible: true },
         ];
       }
-
+  
       return [
-        { title: 'Total de Visitas', cols: 2, rows: 1, circularChartVisible: true, barChartVisible: false },
-        { title: 'Ventas de Productos', cols: 2, rows: 1, circularChartVisible: false, barChartVisible: true },
+        { title: 'Total de Visitas', cols: 2, rows: 1, circularChartVisible: true, barChartVisible: false, pieChartVisible: false, numberCardVisible: false },
+        { title: 'Ventas de Productos', cols: 2, rows: 1, circularChartVisible: false, barChartVisible: true, pieChartVisible: false, numberCardVisible: false },
+        { title: 'Tipo de Visitas', cols: 2, rows: 1, circularChartVisible: false, barChartVisible: false, pieChartVisible: true, numberCardVisible: true },
+        { title: 'Venta de Productos por Ejecutivos', cols: 2, rows: 1, circularChartVisible: false, barChartVisible: false, pieChartVisible: false, numberCardVisible: true },
       ];
     })
   );
