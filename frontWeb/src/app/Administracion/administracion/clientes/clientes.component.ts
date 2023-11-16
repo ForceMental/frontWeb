@@ -89,6 +89,41 @@ export class ClientesComponent implements OnInit {
     });
   }
 
+  editarCliente(cliente: Cliente): void {
+    // Validar si el cliente tiene un ID válido
+    if (!cliente || typeof cliente.id !== 'number') {
+      this.snackBar.open('Cliente inválido o no seleccionado', 'Cerrar', { duration: 3000 });
+      return;
+    }
+
+    // Abrir el diálogo de edición con los datos del cliente seleccionado
+    const dialogRef = this.dialog.open(ClienteEditDialogComponent, {
+      width: '250px',
+      data: cliente
+    });
+
+    // Manejar el cierre del diálogo
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Aquí puedes manejar lo que sucede después de editar el cliente
+        this.clientesService.updateCliente(result).subscribe(
+          updatedCliente => {
+            // Actualizar la lista de clientes
+            const index = this.clientes.findIndex(c => c.id === updatedCliente.id);
+            if (index !== -1) {
+              this.clientes[index] = updatedCliente;
+            }
+            this.snackBar.open('Cliente actualizado con éxito', 'Cerrar', { duration: 3000 });
+          },
+          error => {
+            console.error('Error al actualizar el cliente:', error);
+            this.snackBar.open('Error al actualizar el cliente', 'Cerrar', { duration: 3000 });
+          }
+        );
+      }
+    });
+  }
+
   eliminarCliente(cliente: Cliente): void {
     const confirmDialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: { title: 'Confirmar Eliminación', message: `¿Estás seguro de que quieres eliminar a ${cliente.nombre}?` }
@@ -109,4 +144,5 @@ export class ClientesComponent implements OnInit {
       }
     });
   }
+  
 }
