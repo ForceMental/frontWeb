@@ -62,7 +62,7 @@ import { NuevoClienteDialogComponent } from './Administracion/administracion/cli
   ],
   imports: [
     // Tus módulos aquí
-    CommonModule, // Asegúrate de que esto está en imports, no en declarations
+    CommonModule, 
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
