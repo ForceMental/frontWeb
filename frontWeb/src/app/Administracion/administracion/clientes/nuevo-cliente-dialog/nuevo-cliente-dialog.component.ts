@@ -18,7 +18,7 @@ export class NuevoClienteDialogComponent implements OnInit {
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       telefono: [''],
-      email: ['', [Validators.required, Validators.email]],
+      correo_electronico: ['', [Validators.required, Validators.email]],
       direccion: [''],
       rut: ['', Validators.required],
       comuna: this.fb.group({

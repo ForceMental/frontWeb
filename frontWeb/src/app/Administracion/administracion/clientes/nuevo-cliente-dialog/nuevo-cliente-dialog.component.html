@@ -23,6 +23,13 @@
     <mat-form-field>
       <mat-label>Email</mat-label>
       <input matInput formControlName="correo_electronico">
+      <mat-error *ngIf="nuevoClienteForm.get('correo_electronico')?.hasError('required')">
+        El correo electrónico es obligatorio.
+      </mat-error>
+      <mat-error *ngIf="nuevoClienteForm.get('correo_electronico')?.hasError('email')">
+        El correo electrónico no es válido.
+      </mat-error>
+      
     </mat-form-field>
 
     <!-- Campo Dirección -->
@@ -49,5 +56,5 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancelar</button>
-  <button mat-button (click)="onSubmit()" >Agregar</button>
+  <button mat-button (click)="onSubmit()">Agregar</button>
 </mat-dialog-actions>

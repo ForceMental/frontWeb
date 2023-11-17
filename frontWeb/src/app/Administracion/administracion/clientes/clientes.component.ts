@@ -22,7 +22,7 @@ export class ClientesComponent implements OnInit {
     public dialog: MatDialog,
     private httpClient: HttpClient,
     private snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.cargarClientes();
@@ -31,9 +31,26 @@ export class ClientesComponent implements OnInit {
 
   cargarClientes(): void {
     this.clientesService.getClientes().subscribe(
-      data => {
-        this.clientes = data.map(item => new Cliente(item));
-        //console.log("Clientes cargados:", this.clientes);
+      (data: any[]) => {
+        this.clientes = data.map(item => {
+          // Configura el objeto cliente
+          const cliente: Cliente = {
+            id: item.id,
+            nombre: item.nombre,
+            apellido: item.apellido,
+            telefono: item.telefono,
+            correo_electronico: item.correo_electronico,
+            direccion: item.direccion,
+            rut: item.rut,
+            comuna: {
+              nombre_comuna: item.comuna // Asumiendo que la API devuelve el nombre de la comuna
+            },
+            region: {
+              nombre_region: item.region // Asumiendo que la API devuelve el nombre de la región
+            }
+          };
+          return cliente;
+        });
       },
       (error: HttpErrorResponse) => {
         console.error('Error al obtener los clientes:', error.message);
@@ -94,41 +111,31 @@ export class ClientesComponent implements OnInit {
 
   editarCliente(cliente: Cliente): void {
     // Validar si el cliente tiene un ID válido
-    console.log(cliente.id);
     if (!cliente || typeof cliente.id !== 'number') {
       this.snackBar.open('Cliente inválido o no seleccionado', 'Cerrar', { duration: 3000 });
       return;
     }
-
+  
     // Abrir el diálogo de edición con los datos del cliente seleccionado
     const dialogRef = this.dialog.open(ClienteEditDialogComponent, {
       width: '250px',
       data: cliente
     });
-
+  
     // Manejar el cierre del diálogo
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
-        const cliente: Cliente = {
-          id: result.id,
-          nombre: result.nombre,
-          apellido: result.apellido,
-          telefono: result.telefono,
-          correo_electronico: result.correo_electronico,
-          direccion: result.direccion,
-          rut: result.rut,
-          comuna: result.comuna,
-          region: 6
-        }
-        console.log(cliente);
-        // Aquí puedes manejar lo que sucede después de editar el cliente
+        // Asegurarse de que comuna y region sean números (IDs)
+        result.comuna = parseInt(result.comuna);
+        result.region = parseInt(result.region);
+  
+        // Llamar al servicio para actualizar el cliente
         this.clientesService.updateCliente(result).subscribe(
-          updatedCliente => {
+          response => {
             // Actualizar la lista de clientes
-            const index = this.clientes.findIndex(c => c.id === updatedCliente.id);
+            const index = this.clientes.findIndex(c => c.id === response.id);
             if (index !== -1) {
-              this.clientes[index] = updatedCliente;
+              this.clientes[index] = response;
             }
             this.snackBar.open('Cliente actualizado con éxito', 'Cerrar', { duration: 3000 });
           },
@@ -140,6 +147,7 @@ export class ClientesComponent implements OnInit {
       }
     });
   }
+  
 
   eliminarCliente(cliente: Cliente): void {
     const confirmDialogRef = this.dialog.open(ConfirmDialogComponent, {

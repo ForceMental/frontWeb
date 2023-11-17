@@ -36,8 +36,21 @@
 
     <!-- Campo Comuna -->
     <mat-form-field>
-        <mat-label>Comuna</mat-label>
-        <input matInput formControlName="comuna">
+      <mat-label>Comuna</mat-label>
+      <mat-select formControlName="comuna">
+        <mat-option *ngFor="let comuna of comunas" [value]="comuna.id">
+          {{ comuna.nombre_comuna }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Región</mat-label>
+      <mat-select formControlName="region">
+        <mat-option *ngFor="let region of regiones" [value]="region.id">
+          {{ region.nombre_region }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
 

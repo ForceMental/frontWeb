@@ -5,11 +5,12 @@ import { Cliente } from './cliente.model'; // modelo para Cliente
 import { catchError } from 'rxjs/operators';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class ClientesService {
-  private apiUrl = 'http://localhost:8000/clientes'; // Reemplaza con la URL de tu API real
+  private apiUrl = 'http://107.22.174.168:8000/api/clientes'; // Reemplaza con la URL de tu API real
 
   constructor(private http: HttpClient) {}
 
@@ -27,7 +28,7 @@ export class ClientesService {
 
   // Crear un nuevo cliente
   addCliente(cliente: Cliente): Observable<Cliente> {
-    return this.http.post<Cliente>('http://107.22.174.168:8000/api/clientes/', cliente);
+    return this.http.post<Cliente>('http://107.22.174.168:8000/api/clientes/create/', cliente);
   }
 
   onSave(cliente: Cliente) {
@@ -38,17 +39,20 @@ export class ClientesService {
 
   // Actualizar un cliente
   updateCliente(cliente: Cliente): Observable<Cliente> {
-    return this.http.put<Cliente>(`${'http://107.22.174.168:8000/api/clientes'}/${cliente.id}/`, cliente);
-    // if ((!cliente.id)) {
-    //   console.log(cliente.id);
-    //   console.error('No se puede actualizar el cliente sin un ID válido');
-    //   return this.http.put<Cliente>(`${'http://107.22.174.168:8000/api/clientes'}/${cliente.id}`, cliente);
-    // } else {
-    //   // Lanza un error o maneja esta situación de alguna manera
-    //   console.error("No se puede actualizar el cliente sin un ID válido");
-    //   return throwError("Cliente sin ID válido");
-    // }
+    // Comprobación para asegurar que el cliente tiene un ID válido
+    if (cliente && cliente.id) {
+      // Realizar la solicitud PUT
+      return this.http.put<Cliente>(`${'http://107.22.174.168:8000/api/clientes'}/${cliente.id}/`, cliente);
+    } else {
+      // Manejar el caso en el que el cliente no tiene un ID válido
+      console.error('No se puede actualizar el cliente sin un ID válido');
+      // Aquí puedes retornar un observable que indique el error
+      return throwError("Cliente sin ID válido");
+    }
   }
+
+  
+  
 
   // Eliminar un cliente
   deleteCliente(id: number): Observable<Cliente> {
@@ -60,5 +64,7 @@ export class ClientesService {
     console.error(`Backend returned code ${error.status}, body was: `, error.error);
     return throwError(() => 'Something bad happened; please try again later.');
   }
+  
+  
 }
 
