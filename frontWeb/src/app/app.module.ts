@@ -33,7 +33,7 @@ import { CommonModule } from '@angular/common'; //
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProductoEditDialogComponent } from './Administracion/administracion/productos/producto-edit-dialog/producto-edit-dialog.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './Administracion/administracion/clientes/confirm-dialog/confirm-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NuevoClienteDialogComponent } from './Administracion/administracion/clientes/nuevo-cliente-dialog/nuevo-cliente-dialog.component';
@@ -83,6 +83,7 @@ import { NuevoClienteDialogComponent } from './Administracion/administracion/cli
     MatDialogModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

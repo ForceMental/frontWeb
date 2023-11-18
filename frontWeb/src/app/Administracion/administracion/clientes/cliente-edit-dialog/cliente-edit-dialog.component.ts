@@ -31,7 +31,7 @@ export class ClienteEditDialogComponent implements OnInit {
       correo_electronico: [data.correo_electronico],
       direccion: [data.direccion],
       comuna: [data.comuna ? data.comuna.id : ''], // Utiliza data.comuna.id para obtener el ID de la comuna
-      region: [data.region ? data.region.id : ''], // Utiliza data.region.id para obtener el ID de la región
+      //region: [data.region ? data.region.id : ''], // Utiliza data.region.id para obtener el ID de la región
     });
   }
 
