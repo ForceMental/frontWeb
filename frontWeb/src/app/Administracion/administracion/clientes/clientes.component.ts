@@ -100,7 +100,7 @@ export class ClientesComponent implements OnInit {
             this.clientes.push(nuevoCliente);
             this.snackBar.open('Cliente agregado con éxito', 'Cerrar', { duration: 3000 });
           },
-         
+
           error => {
             console.error('Error al agregar cliente:', error);
             this.snackBar.open('Error al agregar cliente', 'Cerrar', { duration: 3000 });
@@ -116,23 +116,24 @@ export class ClientesComponent implements OnInit {
       this.snackBar.open('Cliente inválido o no seleccionado', 'Cerrar', { duration: 3000 });
       return;
     }
-  
+
     // Abrir el diálogo de edición con los datos del cliente seleccionado
     const dialogRef = this.dialog.open(ClienteEditDialogComponent, {
       width: '250px',
       data: cliente
     });
-  
+
     // Manejar el cierre del diálogo
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Asegurarse de que comuna y region sean números (IDs)
         result.comuna = parseInt(result.comuna);
         result.region = parseInt(result.region);
-  
+
         // Llamar al servicio para actualizar el cliente
         this.clientesService.updateCliente(result).subscribe(
           response => {
+            this.cargarClientes();
             // Actualizar la lista de clientes
             const index = this.clientes.findIndex(c => c.id === response.id);
             if (index !== -1) {
@@ -146,9 +147,10 @@ export class ClientesComponent implements OnInit {
           }
         );
       }
+
     });
   }
-  
+
 
   eliminarCliente(cliente: Cliente): void {
     const confirmDialogRef = this.dialog.open(ConfirmDialogComponent, {

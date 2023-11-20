@@ -15,7 +15,7 @@
   font-size: 3rem;
   font-weight: bold;
   text-align: center;
-  
+
 }
 
 .acciones {
@@ -93,5 +93,25 @@
         }
       }
     }
+  }
+}
+
+@media (max-width: 600px) {
+  .titulo {
+    font-size: 2rem; /* Tamaño de fuente más pequeño para pantallas pequeñas */
+  }
+
+  .acciones .btn {
+    font-size: 14px; /* Tamaño de fuente más pequeño para botones */
+    padding: 8px 10px; /* Padding más pequeño para botones */
+  }
+
+  .tabla-productos th, .tabla-productos td {
+    padding: 6px; /* Padding más pequeño para celdas de tabla */
+  }
+
+  .tabla-productos {
+    width: 100%;
+    border-collapse: collapse;
   }
 }
