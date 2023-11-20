@@ -15,4 +15,11 @@ export class DataService {
     return this.http.get(url);
   }
 
+  obtenerDatosSegundaUrl(): Observable<any> {
+    
+    const url = 'https://forcemental.azure-api.net/dashboard/api/service';
+    return this.http.get(url);
+  }
+  
+
 }
