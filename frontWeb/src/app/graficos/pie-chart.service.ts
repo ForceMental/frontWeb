@@ -1,34 +1,47 @@
-// pie-chart.service.ts
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators'; // Importa map de 'rxjs/operators'
+import { DataService } from '../services/data.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PieChartService {
-  getPieChartData(): Observable<any> {
-    const data: any[] = [
-      { name: 'Category 1', value: 30 },
-      { name: 'Category 2', value: 25 },
-      { name: 'Category 3', value: 20 },
-      { name: 'Category 4', value: 15 },
-    ];
+  grafico3: any[] = [];
+  constructor(private service: DataService) { }
 
-    // Define la estructura del objeto pieChartData directamente aquí
-    const pieChartData: any = {
-      single: data,
+  getPieChartConfig(): any {
+    return {
       view: [700, 400],
-      gradient: true,
-      showLegend: true,
-      showLabels: true,
-      isDoughnut: false,
+      gradient: false, // Quita la declaración de tipo boolean
+      animations: true,
+
       colorScheme: {
         domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
       }
     };
+  }
 
-    console.log('Datos del gráfico de pie obtenidos:', pieChartData);
-    
-    return of(pieChartData);
+  getPieData(): Observable<any[]> {
+    // Realiza la solicitud HTTP para obtener los datos de servicio_venta
+    return this.service.obtenerDatos().pipe(
+      map((data: any) => {
+        // Formatea los datos para el gráfico de acuerdo a tus necesidades
+        const sumaProductos = data.suma_productos;
+        const chartData: any[] = [];
+
+        for (const key in sumaProductos) {
+          if (sumaProductos.hasOwnProperty(key)) {
+            const producto = sumaProductos[key];
+            chartData.push({
+              name: producto.nombre,
+              value: producto.cantidad
+            });
+          }
+        }
+
+        return chartData;
+      })
+    );
   }
 }

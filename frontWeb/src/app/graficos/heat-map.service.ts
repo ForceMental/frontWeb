@@ -1,29 +1,35 @@
-// vertical-bar-chart.service.ts
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { DataService } from '../services/data.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class VerticalBarChartService {
-  grafico2: any[] = [];
+export class HeatMapService {
+  grafico6: any[] = [];
   constructor(private service: DataService) { }
 
-  getVerticalBarConfig(): any {
+  getHeatMapConfig(): any {
     return {
-      
+      view: [700, 300],
+      legend: true,
+      showLabels: true,
+      animations: true,
+      xAxis: true,
+      yAxis: true,
+      showYAxisLabel: true,
+      showXAxisLabel: true,
+      xAxisLabel: true,
+      yAxisLabel: true,
       colorScheme: {
-        domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+        domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
       }
     };
   }
 
-  getVerticalBarData(): Observable<any[]> {
-    // Realiza la solicitud HTTP para obtener los datos de servicio_venta
+  getHeatMapData(): Observable<any[]> {
     return this.service.obtenerDatos().pipe(
       map((data: any) => {
-        // Formatea los datos para el gráfico de acuerdo a tus necesidades
         const sumaProductos = data.suma_productos;
         const chartData: any[] = [];
 
@@ -42,4 +48,3 @@ export class VerticalBarChartService {
     );
   }
 }
-

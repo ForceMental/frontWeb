@@ -8,13 +8,15 @@
         </mat-card-title>
       </mat-card-header>
       <mat-card-content class="dashboard-card-content">
+
         <!-- Muestra el gráfico circular si circularChartVisible es true-->
+
         <ng-container *ngIf="card.circularChartVisible && circularChartVisible">
           <div class="chart-container">
             <ngx-charts-advanced-pie-chart
               [view]="view"
               [scheme]="colorScheme"
-              [results]="single"
+              [results]="grafico1"
               [gradient]="gradient"
               (select)="onSelect($event)"
               (activate)="onActivate($event)"
@@ -27,50 +29,92 @@
         <ng-container *ngIf="card.barChartVisible && barChartVisible">
           <div class="chart-container">
             <ngx-charts-bar-vertical
-              [view]="barChartConfig.view"
-              [scheme]="barChartConfig.colorScheme"
-              [results]="barChartData"
-              [gradient]="barChartConfig.gradient"
-              [xAxis]="barChartConfig.showXAxis"
-              [yAxis]="barChartConfig.showYAxis"
-              [legend]="barChartConfig.showLegend"
-              [showXAxisLabel]="barChartConfig.showXAxisLabel"
-              [showYAxisLabel]="barChartConfig.showYAxisLabel"
-              [xAxisLabel]="barChartConfig.xAxisLabel"
-              [yAxisLabel]="barChartConfig.yAxisLabel"
+              [view]="view"
+              [scheme]="colorScheme"
+              [results]="grafico2"
+              [gradient]="gradient"
+              [xAxis]="showXAxis"
+              [yAxis]="showYAxis"
+              [legend]="showLegend"
+              [showXAxisLabel]="showXAxisLabel"
+              [showYAxisLabel]="showYAxisLabel"
+              [xAxisLabel]="xAxisLabel"
+              [yAxisLabel]="yAxisLabel"
               (select)="onSelect($event)">
             </ngx-charts-bar-vertical>
           </div>
         </ng-container>
 
-        <!-- Muestra el gráfico circular (Pie Chart) si pieChartVisible es true -->
+        <!-- Muestra el gráfico pie (Pie Chart) si pieChartVisible es true -->
         <ng-container *ngIf="card.pieChartVisible && pieChartVisible">
           <div class="chart-container">
             <ngx-charts-pie-chart
             [view]="view"
             [scheme]="colorScheme"
-            [results]="single"
+            [results]="grafico3"
             [gradient]="gradient"
-            (select)="onSelect($event)"
-            (activate)="onActivate($event)"
-            (deactivate)="onDeactivate($event)">
-            
-            </ngx-charts-pie-chart>
+            [legend]="showLegend"
+           [legendPosition]="legendPosition"
+           [labels]="showLabels"
+           [doughnut]="isDoughnut"
+           (select)="onSelect($event)"
+           (activate)="onActivate($event)"
+           (deactivate)="onDeactivate($event)">
+        </ngx-charts-pie-chart>
           </div>
         </ng-container>
 
-        <!-- Muestra el gráfico circular (Number Card) si pieChartVisible es true -->
-        <ng-container *ngIf="card.numberCardVisible && numberCardChartVisible">
+        <!-- Muestra el gráfico Numerico (Number Card) si numberCardVisible es true -->
+        <ng-container *ngIf="card.numberChartVisible && numberChartVisible">
           <div class="chart-container">
         <ngx-charts-number-card
-            [view]="view"
+          [view]="view"
+          [results]="grafico4"
           [scheme]="colorScheme"
-          [results]="single"
           [cardColor]="cardColor"
           (select)="onSelect($event)">
         </ngx-charts-number-card>
           </div>
         </ng-container>
+
+
+        <!-- Muestra el gráfico Mapa(map Chart) si e mapChartVisible es true -->
+        <ng-container *ngIf="card.mapChartVisible && mapChartVisible">
+          <div class="chart-container">
+            <ngx-charts-tree-map
+            [view]="view"
+            [results]="grafico5"
+            [scheme]="colorScheme"          
+            [gradient]="gradient"
+            [animations]="animations"
+            [labelFormatting]="labelFormatting"
+            (select)="onSelect($event)">
+          </ngx-charts-tree-map>
+          </div>
+        </ng-container>
+
+        <!-- Muestra el gráfico Calor (HeatMap) si heatChartVisible es true -->
+        <ng-container *ngIf="card.heatMapChartVisible && heatMapChartVisible">
+          <div class="chart-container">
+            <ngx-charts-heat-map
+            [view]="view"
+            [results]="grafico6"
+            [scheme]="colorScheme"
+            [legend]="legend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxis]="xAxis"
+            [yAxis]="yAxis"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [results]="multi"
+            (select)="onSelect($event)"
+            (activate)="onActivate($event)"
+            (deactivate)="onDeactivate($event)">
+        </ngx-charts-heat-map>
+          </div>
+        </ng-container>
+
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
