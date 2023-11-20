@@ -1,9 +1,6 @@
 <h1 mat-dialog-title>Editar Cliente</h1>
 <div mat-dialog-content>
   <form [formGroup]="editForm">
-
-    <!-- Campo oculto para el ID -->
-    <input type="hidden" formControlName="id">
     <!-- Campo Nombre -->
     <mat-form-field>
       <mat-label>Nombre</mat-label>
@@ -44,18 +41,15 @@
       </mat-select>
     </mat-form-field>
     
-<!--    <mat-form-field>
+    <!-- Campo Región -->
+    <mat-form-field>
       <mat-label>Región</mat-label>
       <mat-select formControlName="region">
         <mat-option *ngFor="let region of regiones" [value]="region.id">
           {{ region.nombre_region }}
         </mat-option>
       </mat-select>
-    </mat-form-field> -->
-
-
-
-    <!-- Agrega otros campos según sea necesario -->
+    </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions>

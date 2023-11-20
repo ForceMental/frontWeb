@@ -66,7 +66,7 @@ export class NuevoClienteDialogComponent implements OnInit {
       direccion: ['', Validators.required],
       rut: ['', [Validators.required, rutValidator()]],
       comuna: ['', Validators.required] // Comuna como un campo separado
-      // Puedes agregar más campos si son necesarios
+      
     });
   }
 
@@ -84,20 +84,35 @@ export class NuevoClienteDialogComponent implements OnInit {
   }
 
   onSubmit(): void {
-  if (this.nuevoClienteForm.valid) {
-    console.log('Formulario enviado:', this.nuevoClienteForm.value);
-    this.clientesService.addCliente(this.nuevoClienteForm.value).subscribe({
-      next: (nuevoCliente) => {
-        this.dialogRef.close(nuevoCliente);
-      },
-      
-      
-    });
-  } else {
-    console.log('Formulario no es válido', this.nuevoClienteForm);
-  }
-}
+    if (this.nuevoClienteForm.valid) {
+      const formData = this.nuevoClienteForm.value;
 
+      // Asegurarse de que 'comuna' sea un ID numérico
+      const comunaId = typeof formData.comuna === 'object' ? formData.comuna.id : formData.comuna;
+      
+      const clienteParaEnviar = {
+        ...formData,
+        comuna: comunaId
+      };
+
+      // Registro para depuración
+      console.log("Datos del cliente a enviar:", clienteParaEnviar);
+
+      this.clientesService.addCliente(clienteParaEnviar).subscribe({
+        next: (clienteCreado) => {
+          console.log('Cliente creado exitosamente:', clienteCreado);
+          this.dialogRef.close(clienteCreado);
+        },
+        error: (error) => {
+          console.error('Error al crear cliente:', error);
+        }
+      });
+    } else {
+      console.error('Formulario no es válido', this.nuevoClienteForm);
+    }
+  }
+  
+  
 
 
   onCancel(): void {

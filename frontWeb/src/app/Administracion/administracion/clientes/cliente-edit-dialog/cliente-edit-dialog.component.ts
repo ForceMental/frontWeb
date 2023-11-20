@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Cliente } from '../cliente.model';
 import { ComunaService } from '../comuna.service';
@@ -22,34 +22,42 @@ export class ClienteEditDialogComponent implements OnInit {
     private comunaService: ComunaService,
     private regionService: RegionService
   ) {
+    // Inicializa el formulario con valores seguros
     this.editForm = this.fb.group({
       id: [data.id],
-      nombre: [data.nombre],
-      apellido: [data.apellido],
-      telefono: [data.telefono],
-      rut: [data.rut],
-      correo_electronico: [data.correo_electronico],
-      direccion: [data.direccion],
-      comuna: [data.comuna ? data.comuna.id : ''], // Utiliza data.comuna.id para obtener el ID de la comuna
-      //region: [data.region ? data.region.id : ''], // Utiliza data.region.id para obtener el ID de la región
+      nombre: [data.nombre, Validators.required],
+      apellido: [data.apellido, Validators.required],
+      telefono: [data.telefono, Validators.required],
+      rut: [{value: data.rut, disabled: true}], // RUT deshabilitado
+      correo_electronico: [data.correo_electronico, [Validators.required, Validators.email]],
+      direccion: [data.direccion, Validators.required],
+      comuna: [this.getSafeValue(data.comuna, 'id'), Validators.required],
+      region: [this.getSafeValue(data.region, 'id'), Validators.required],
     });
   }
 
   ngOnInit(): void {
+    // Cargar comunas y regiones como antes
     this.cargarComunas();
     this.cargarRegiones();
   }
 
+  private getSafeValue(obj: any, prop: string): any {
+    return obj && obj.hasOwnProperty(prop) ? obj[prop] : '';
+  }
+
   cargarComunas(): void {
-    this.comunaService.getComunas().subscribe(data => {
-      this.comunas = data;
-    });
+    this.comunaService.getComunas().subscribe(
+      data => this.comunas = data,
+      error => console.error('Error al cargar comunas', error)
+    );
   }
 
   cargarRegiones(): void {
-    this.regionService.getRegiones().subscribe(data => {
-      this.regiones = data;
-    });
+    this.regionService.getRegiones().subscribe(
+      data => this.regiones = data,
+      error => console.error('Error al cargar regiones', error)
+    );
   }
 
   onCancel(): void {
@@ -57,8 +65,30 @@ export class ClienteEditDialogComponent implements OnInit {
   }
 
   onSave(): void {
+    console.log('Valores del formulario:', this.editForm.value);
+    console.log('Estado del formulario:', this.editForm.status);
+  
     if (this.editForm.valid) {
-      this.dialogRef.close(this.editForm.value);
+      const formData = {
+        ...this.editForm.value,
+        rut: this.data.rut // Añade el RUT manualmente si está deshabilitado
+      };
+  
+      // Enviar datos del formulario para actualización
+      console.log('Datos a enviar:', formData);
+      // Implementa la lógica para enviar los datos al servidor aquí
+      this.dialogRef.close(formData);
+    } else {
+      console.error('Formulario no es válido');
+      Object.keys(this.editForm.controls).forEach(key => {
+        const control = this.editForm.get(key);
+        if (control && control.errors) {
+          Object.keys(control.errors).forEach(keyError => {
+            console.error(`Error en ${key}: ${keyError}`, control.errors![keyError]);
+          });
+        }
+      });
     }
   }
-}
+  
+}  

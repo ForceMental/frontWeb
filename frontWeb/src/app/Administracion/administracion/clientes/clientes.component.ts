@@ -92,31 +92,23 @@ export class ClientesComponent implements OnInit {
     const dialogRef = this.dialog.open(NuevoClienteDialogComponent, {
       width: '250px'
     });
-  
-    dialogRef.afterClosed().subscribe({
-      next: (result) => {
-        if (result) {
-          console.log(result);
-          this.clientesService.addCliente(result).subscribe({
-            next: (nuevoCliente) => {
-              this.clientes.push(nuevoCliente);
-              this.snackBar.open('Cliente agregado con éxito', 'Cerrar', { duration: 3000 });
-            },
-            error: (error) => {
-              console.error('Error al agregar cliente:', error);
-              this.snackBar.open('Error al agregar cliente', 'Cerrar', { duration: 3000 });
-            }
-            // Puedes agregar 'complete' aquí si necesitas manejar la finalización
-          });
-        }
-      },
-      error: (error) => {
-        // Manejar errores al cerrar el diálogo, si es necesario
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.clientesService.addCliente(result).subscribe(
+          nuevoCliente => {
+            this.clientes.push(nuevoCliente);
+            this.snackBar.open('Cliente agregado con éxito', 'Cerrar', { duration: 3000 });
+          },
+         
+          error => {
+            console.error('Error al agregar cliente:', error);
+            this.snackBar.open('Error al agregar cliente', 'Cerrar', { duration: 3000 });
+          }
+        );
       }
-      // Puedes agregar 'complete' aquí si necesitas manejar la finalización del diálogo
     });
   }
-  
 
   editarCliente(cliente: Cliente): void {
     // Validar si el cliente tiene un ID válido
