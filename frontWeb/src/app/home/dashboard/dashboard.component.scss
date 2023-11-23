@@ -1,0 +1,43 @@
+.mat-grid-list {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.dashboard-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 20px; /* Espacio entre las tarjetas */
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+
+/* Agrega estilos para chart-container */
+.chart-container {
+  width: 100%; /* O ajusta según tus necesidades */
+  height: 100%; /* O ajusta según tus necesidades */
+}
+
+/* Añadir reglas para dispositivos más pequeños */
+@media screen and (max-width: 767px) {
+  .mat-grid-list {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-card {
+    margin: 20px auto;
+    max-width: 90%;
+  }
+}
