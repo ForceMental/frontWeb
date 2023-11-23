@@ -1,0 +1,72 @@
+.mat-grid-list {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.dashboard-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 20px; /* Espacio entre las tarjetas */
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+
+/* Agrega estilos para chart-container */
+.chart-container {
+  width: 100%; /* O ajusta según tus necesidades */
+  height: 100%; /* O ajusta según tus necesidades */
+}
+
+@media screen and (max-width: 767px) {
+  .mat-grid-list {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-card {
+    margin: 20px auto;
+    max-width: 100%;
+  }
+
+  /* Ajustes para chart-container en dispositivos más pequeños */
+.chart-container1
+
+.chart-container2,
+.chart-container3,
+.chart-container4,
+.chart-container5 {
+  width: 100%;
+  height: 300px; /* Ajusta según sea necesario para dispositivos más pequeños */
+}
+
+/* Ajustes para dashboard-card en dispositivos más pequeños */
+.dashboard-card {
+  margin: 20px auto;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column; /* Cambia la dirección del flex a columna */
+  align-items: center; /* Centra los elementos horizontalmente */
+}
+
+/* Ajustes específicos para gráficos individuales si es necesario */
+.chart-container1 ngx-charts-advanced-pie-chart,
+.chart-container2 ngx-charts-bar-vertical,
+.chart-container3 ngx-charts-pie-chart,
+.chart-container4 ngx-charts-number-card,
+.chart-container5 ngx-charts-tree-map {
+  height: 100%; /* Ajusta según sea necesario para dispositivos más pequeños */
+  width: 100%; /* Ajusta según sea necesario para dispositivos más pequeños */
+}
+}
