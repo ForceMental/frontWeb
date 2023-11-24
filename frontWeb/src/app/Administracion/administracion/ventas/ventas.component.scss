@@ -1,0 +1,48 @@
+/* ventas.component.scss */
+.ventas-container {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.boton-volver {
+    margin-bottom: 10px;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.table-container {
+    overflow-x: auto;
+    margin-top: 16px;
+}
+
+table {
+    width: 100%;
+    min-width: 600px; // Asegura un mínimo de ancho para la tabla
+}
+
+.mat-elevation-z8 {
+    box-shadow: 0 6px 10px -5px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 600px) {
+    .toolbar {
+        flex-direction: column;
+    }
+    
+    .mat-form-field {
+        max-width: none;
+    }
+}

@@ -37,6 +37,7 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './Administracion/administracion/clientes/confirm-dialog/confirm-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NuevoClienteDialogComponent } from './Administracion/administracion/clientes/nuevo-cliente-dialog/nuevo-cliente-dialog.component';
+import { VentasComponent } from './Administracion/administracion/ventas/ventas.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { NuevoClienteDialogComponent } from './Administracion/administracion/cli
     ProductoEditDialogComponent,
     ConfirmDialogComponent,
     NuevoClienteDialogComponent,
+    VentasComponent,
     // No incluyas módulos en declarations
   ],
   imports: [
