@@ -10,13 +10,13 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ClientesService {
-  private apiUrl = 'https://forcemental.azure-api.net/cliente'; // Reemplaza con la URL de tu API real
+  private apiUrl = 'http://107.22.174.168:8000/api/clientes'; // Reemplaza con la URL de tu API real
 
   constructor(private http: HttpClient) { }
 
   // Obtener todos los clientes
   getClientes(): Observable<Cliente[]> {
-    return this.http.get<Cliente[]>(`${this.apiUrl}/api/clientes/`).pipe(
+    return this.http.get<Cliente[]>('https://forcemental.azure-api.net/cliente/api/clientes/').pipe(
       catchError(this.handleError)
     );
   }
@@ -29,11 +29,11 @@ export class ClientesService {
   // En ClientesService
   addCliente(cliente: Cliente): Observable<Cliente> {
     console.log("Enviando cliente:", cliente); // Depuración
-    return this.http.post<Cliente>(`${this.apiUrl}api/cliente/create/`, cliente).pipe(
+    return this.http.post<Cliente>(`${this.apiUrl}/create/`, cliente).pipe(
       catchError(this.handleError)
     );
   }
-
+  
 
 
   onSave(cliente: Cliente) {
@@ -47,7 +47,7 @@ export class ClientesService {
     // Comprobación para asegurar que el cliente tiene un ID válido
     if (cliente && cliente.id) {
       // Realizar la solicitud PUT
-      return this.http.put<Cliente>(`${this.apiUrl}/api/clientes/update/${cliente.id}/`, cliente);
+      return this.http.put<Cliente>(`${'http://107.22.174.168:8000/api/clientes/update'}/${cliente.id}/`, cliente);
     } else {
       // Manejar el caso en el que el cliente no tiene un ID válido
       console.error('No se puede actualizar el cliente sin un ID válido');
@@ -61,7 +61,7 @@ export class ClientesService {
 
   // Eliminar un cliente
   deleteCliente(id: number): Observable<Cliente> {
-    return this.http.delete<Cliente>(`${this.apiUrl}/api/clientes/${id}`);
+    return this.http.delete<Cliente>(`${'http://107.22.174.168:8000/api/clientes'}/${id}`);
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
