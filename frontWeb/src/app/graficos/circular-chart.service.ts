@@ -8,6 +8,7 @@ import { Observable, catchError, map, of } from 'rxjs';
 })
 export class CircularChartService {
   grafico1: any[] = [];
+  app: any [] = [];
   constructor(private service: DataService){
 
   }

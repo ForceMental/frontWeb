@@ -7,6 +7,7 @@ import { DataService } from '../services/data.service';
 })
 export class HeatMapService {
   grafico6: any[] = [];
+  app: any [] = [];
   constructor(private service: DataService) { }
 
   getHeatMapConfig(): any {
