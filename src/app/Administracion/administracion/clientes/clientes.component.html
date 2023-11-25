@@ -5,6 +5,7 @@
     <button (click)="abrirDialogoNuevoCliente()" class="agregar-button">Agregar Nuevo Cliente</button>
     <button routerLink="/administracion" class="volver-button">Volver al Panel de Administración</button>
   </div>
+
     <!-- Tabla de clientes -->
     <mat-table [dataSource]="clientes" class="mat-elevation-z8">
   
@@ -44,6 +45,9 @@
         <mat-cell *matCellDef="let cliente"> {{ cliente.rut }} </mat-cell>
       </ng-container>
       
+  
+      
+  
       <!-- Columna de acciones -->
       <ng-container matColumnDef="acciones">
         <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>

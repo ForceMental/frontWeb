@@ -6,7 +6,7 @@ import { DataService } from '../services/data.service';
   providedIn: 'root',
 })
 export class NumberCardService {
-  grafico4: any[] = [];
+  grafico5: any[] = [];
   constructor(private service: DataService) { }
 
   getNumberCardConfig(): any {

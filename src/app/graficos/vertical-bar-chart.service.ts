@@ -7,12 +7,12 @@ import { DataService } from '../services/data.service';
   providedIn: 'root'
 })
 export class VerticalBarChartService {
-  grafico2: any[] = [];
+  grafico4: any[] = [];
   constructor(private service: DataService) { }
 
   getVerticalBarConfig(): any {
     return {
-      
+
       colorScheme: {
         domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
       }

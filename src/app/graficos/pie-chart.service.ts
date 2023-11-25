@@ -7,7 +7,7 @@ import { DataService } from '../services/data.service';
   providedIn: 'root',
 })
 export class PieChartService {
-  grafico3: any[] = [];
+  grafico2: any[] = [];
   constructor(private service: DataService) { }
 
   getPieChartConfig(): any {
