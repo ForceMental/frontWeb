@@ -6,7 +6,15 @@
 .sidenav {
   width: 200px;
   text-align: center;
-  background-color: #1a5c83;
+  background: linear-gradient(to bottom, #0c2a5d, #13999b);
+}
+.title_menu{
+  background-color: #0c2a5d;
+  color:#ffffff;
+  font-family: 'Lora', serif;
+  
+  
+
 }
 
 .perfil h3 {
@@ -52,8 +60,9 @@
   width: 100%;
   font-size: 2rem;
   color: #ffffff;
-  font-style: oblique;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ajusta los valores según tus preferencias */
+  font-family: 'Lora', serif;
+  
+  
 }
 
 .title_menu{
@@ -62,8 +71,6 @@
   align-items: center;
   width: 100%;
   font-size: 1.5rem;
-  
-  
   
 
 }
@@ -75,6 +82,6 @@
 
 .toolbar{
   text-align: center;
-  background-color: #20a0d8;
+  background-color: #0c2a5d;
   
 }

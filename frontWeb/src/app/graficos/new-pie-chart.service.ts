@@ -1,29 +1,29 @@
-// map-chart.service.ts
+// new-pie-chart.service.ts
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { DataService } from '../services/data.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class MapChartService {
-  grafico6: any[] = [];
+export class NewPieChartService {
+  grafico3: any[] = [];
 
   constructor(private service: DataService) {}
 
-  getMapData(): Observable<any[]> {
+  getNewPieChartData(): Observable<any[]> {
     // Realiza la solicitud HTTP para obtener los datos de servicio
     return this.service.obtenerDatosService().pipe(
       map((data: any) => {
-        const contadoresEmpleado = data.contadores_empleado;
+        const contadorReprogramadas = data.contador_reprogramadas;
         const chartData: any[] = [];
 
-        for (const key in contadoresEmpleado) {
-          if (contadoresEmpleado.hasOwnProperty(key)) {
-            const name = key;
-            const count = contadoresEmpleado[key];
+        for (const key in contadorReprogramadas) {
+          if (contadorReprogramadas.hasOwnProperty(key)) {
+            const status = key;
+            const count = contadorReprogramadas[key];
             chartData.push({
-              name: name,
+              name: `${status === 'True' ? 'Reprogramadas' : 'No Reprogramadas'}`,
               value: count
             });
           }

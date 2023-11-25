@@ -7,12 +7,12 @@ import { DataService } from '../services/data.service';
   providedIn: 'root'
 })
 export class VerticalBarChartService {
-  grafico2: any[] = [];
+  grafico4: any[] = [];
   constructor(private service: DataService) { }
 
   getVerticalBarConfig(): any {
     return {
-      
+
       colorScheme: {
         domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
       }
@@ -21,7 +21,7 @@ export class VerticalBarChartService {
 
   getVerticalBarData(): Observable<any[]> {
     // Realiza la solicitud HTTP para obtener los datos de servicio_venta
-    return this.service.obtenerDatos().pipe(
+    return this.service.obtenerDatosServiceVenta().pipe(
       map((data: any) => {
         // Formatea los datos para el gráfico de acuerdo a tus necesidades
         const sumaProductos = data.suma_productos;

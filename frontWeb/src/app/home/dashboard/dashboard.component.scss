@@ -23,21 +23,52 @@
 .dashboard-card-content {
   text-align: center;
 }
-
-/* Agrega estilos para chart-container */
-.chart-container {
-  width: 100%; /* O ajusta según tus necesidades */
-  height: 100%; /* O ajusta según tus necesidades */
-}
-
-/* Añadir reglas para dispositivos más pequeños */
 @media screen and (max-width: 767px) {
-  .mat-grid-list {
-    grid-template-columns: 1fr;
+  
+  .dashboard-card {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 20px;
   }
 
-  .dashboard-card {
-    margin: 20px auto;
-    max-width: 90%;
+ 
+  .mat-grid-list {
+    max-width: 1200px;
+    width: 100%;
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  
+  .dashboard-card .chart-container1,
+  .dashboard-card .chart-container2,
+  .dashboard-card .chart-container3,
+  .dashboard-card .chart-container4,
+  .dashboard-card .chart-container5,
+  .dashboard-card .chart-container6,
+  .dashboard-card .chart-container7{
+    width: 100%;
+    height: 40vh; 
+  }
+
+  
+  .advanced-pie-legend .total-value {
+    font-size: 18px !important;
+  }
+
+  .advanced-pie-legend .legend-items-container .legend-items .legend-item .item-percent {
+    font-size: 50px !important;
+    margin-top: 5px !important;
+    position: center !important; 
   }
 }
+
+
+
+
+  
+
+
+

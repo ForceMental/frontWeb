@@ -7,7 +7,6 @@ import { DataService } from '../services/data.service';
 })
 export class HeatMapService {
   grafico6: any[] = [];
-  app: any [] = [];
   constructor(private service: DataService) { }
 
   getHeatMapConfig(): any {
@@ -29,21 +28,22 @@ export class HeatMapService {
   }
 
   getHeatMapData(): Observable<any[]> {
-    return this.service.obtenerDatos().pipe(
+    return this.service.obtenerDatosService().pipe(
       map((data: any) => {
-        const sumaProductos = data.suma_productos;
+        const contadoresEmpleado = data.contadores_empleado;
         const chartData: any[] = [];
-
-        for (const key in sumaProductos) {
-          if (sumaProductos.hasOwnProperty(key)) {
-            const producto = sumaProductos[key];
+  
+        for (const key in contadoresEmpleado) {
+          if (contadoresEmpleado.hasOwnProperty(key)) {
+            const empleadoId = key;
+            const cantidad = contadoresEmpleado[key];
             chartData.push({
-              name: producto.nombre,
-              value: producto.cantidad
+              name: `Empleado ${empleadoId}`,
+              value: cantidad
             });
           }
         }
-
+  
         return chartData;
       })
     );
