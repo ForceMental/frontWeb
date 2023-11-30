@@ -8,7 +8,7 @@ import { throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class VentasService {
-  private apiUrl = 'http://107.22.174.168:8030/api/Listaventas'; // URL de tu API
+  private apiUrl = 'https://forcemental.azure-api.net/venta/api/Listaventas/'; // URL de tu API
 
   constructor(private http: HttpClient) { }
 
@@ -18,6 +18,18 @@ export class VentasService {
   private handleError(error: any) {
     console.error('An error occurred:', error);
     return throwError(error);
+  }
+
+  aprobarVenta(ventaId: number): Observable<any> {
+    // Lógica para enviar una solicitud HTTP para aprobar la venta
+    // Asegúrate de usar la URL y método HTTP correctos
+    return this.http.post<any>(`${this.apiUrl}/ventas/aprobar/${ventaId}`, {});
+  }
+
+  cancelarVenta(ventaId: number): Observable<any> {
+    // Lógica para enviar una solicitud HTTP para cancelar la venta
+    // Asegúrate de usar la URL y método HTTP correctos
+    return this.http.post<any>(`${this.apiUrl}/ventas/cancelar/${ventaId}`, {});
   }
 
 }
