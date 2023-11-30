@@ -10,11 +10,10 @@
       <mat-card-content class="dashboard-card-content">
 
         <!-- Muestra el gráfico circular si circularChartVisible es true-->
-
         <ng-container *ngIf="card.circularChartVisible && circularChartVisible">
           <div class="chart-container1">
             <ngx-charts-advanced-pie-chart
-              [view]="view"
+              [view]="view1"
               [scheme]="colorScheme"
               [results]="grafico1"
               [gradient]="gradient"
@@ -30,7 +29,7 @@
         <ng-container *ngIf="card.pieChartVisible && pieChartVisible">
           <div class="chart-container2">
             <ngx-charts-pie-chart
-            [view]="view"
+            [view]="view2"
             [scheme]="colorScheme"
             [results]="grafico2"
             [gradient]="gradient"
@@ -48,7 +47,7 @@
        <ng-container *ngIf="card.newPieChartVisible && newPieChartVisible">
         <div class="chart-container3">
           <ngx-charts-pie-chart
-          [view]="view"
+          [view]="view3"
           [scheme]="colorScheme"
           [results]="grafico3"
           [gradient]="gradient"
@@ -67,7 +66,7 @@
          <ng-container *ngIf="card.barChartVisible && barChartVisible">
           <div class="chart-container4">
             <ngx-charts-bar-vertical
-              [view]="view"
+              [view]="view4"
               [scheme]="colorScheme"
               [results]="grafico4"
               [gradient]="gradient"
@@ -88,7 +87,7 @@
         <ng-container *ngIf="card.numberChartVisible && numberChartVisible">
           <div class="chart-container5">
         <ngx-charts-number-card
-          [view]="view"
+          [view]="view5"
           [results]="grafico5"
           [scheme]="colorScheme"
           [cardColor]="cardColor"
@@ -102,7 +101,7 @@
         <ng-container *ngIf="card.mapChartVisible && mapChartVisible">
           <div class="chart-container6">
             <ngx-charts-tree-map
-            [view]="view"
+            [view]="view6"
             [results]="grafico6"
             [scheme]="colorScheme"
             [gradient]="gradient"

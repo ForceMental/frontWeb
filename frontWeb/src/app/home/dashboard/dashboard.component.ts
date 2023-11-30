@@ -10,14 +10,23 @@ import { MapChartService } from 'src/app/graficos/map-chart.service';
 import { NewPieChartService } from 'src/app/graficos/new-pie-chart.service';
 import { LegendPosition } from '@swimlane/ngx-charts';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   encapsulation: ViewEncapsulation.None
+
 })
 export class DashboardComponent implements OnInit {
-  view: any;
+
+  view1: any;
+  view2: any;
+  view3: any;
+  view4: any;
+  view5: any;
+  view6: any;
+
   colorScheme: any;
 
   grafico1: any[] = [];
@@ -30,7 +39,7 @@ export class DashboardComponent implements OnInit {
 
 
 
-  // visible
+
 
   circularChartVisible: boolean = true;
   barChartVisible: boolean = true;
@@ -82,8 +91,8 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void { // circular-chart.service.ts
-    this.view = this.circularChartService.getDefaultChartConfig().view;
-    this.colorScheme = this.circularChartService.getDefaultChartConfig().colorScheme;
+    this.view1 = this.circularChartService.getDefaultCircularChartConfig().view1;
+    this.colorScheme = this.circularChartService.getDefaultCircularChartConfig().colorScheme;
 
     this.circularChartService.getSampleChartData().pipe(takeUntil(this.destroy$)).subscribe({
       next: (data) => {
@@ -98,6 +107,9 @@ export class DashboardComponent implements OnInit {
 
     // pie-chart.service.ts
 
+    this.view2 = this.pieChartService.getPieChartConfig().view2;
+    this.colorScheme = this.pieChartService.getPieChartConfig().colorScheme;
+
     this.pieChartService.getPieData().pipe(takeUntil(this.destroy$)).subscribe({
       next: (data) => {
         this.grafico2 = data;
@@ -109,6 +121,9 @@ export class DashboardComponent implements OnInit {
     });
 
      // new-pie-chart.service.ts
+
+     this.view3 = this.newPieChartService.getDefaultNewPieChartConfig().view3;
+     this.colorScheme = this.newPieChartService.getDefaultNewPieChartConfig().colorScheme;
 
      this.newPieChartService.getNewPieChartData().pipe(takeUntil(this.destroy$)).subscribe({
       next: (data) => {
@@ -123,19 +138,30 @@ export class DashboardComponent implements OnInit {
 
       // vertical-bar-chart.service.ts
 
-    this.verticalBarChartService.getVerticalBarData().pipe(takeUntil(this.destroy$)).subscribe({
-      next: (data) => {
-        this.grafico4 = data;
-        console.log('Datos para el gráfico de barras:', this.grafico4);
-      },
-      error: (error) => {
-        console.error('Error obteniendo los datos:', error);
-      }
-    });
+const isMobile = this.breakpointObserver.isMatched(Breakpoints.Handset);
+const verticalBarConfig = this.verticalBarChartService.getVerticalBarConfig(isMobile);
+
+this.view4 = verticalBarConfig.view4;
+this.colorScheme = verticalBarConfig.colorScheme;
+
+this.verticalBarChartService.getVerticalBarData().pipe(takeUntil(this.destroy$)).subscribe({
+  next: (data) => {
+    this.grafico4 = data;
+    console.log('Datos para el gráfico de barras:', this.grafico4);
+  },
+  error: (error) => {
+    console.error('Error obteniendo los datos:', error);
+  }
+});
+
 
 
 
 // number-chart.service.ts
+
+    this.view5 = this.numberCardService.getNumberCardConfig().view5;
+    this.colorScheme = this.numberCardService.getNumberCardConfig().colorScheme;
+
     this.numberCardService.getNumberCardData().pipe(takeUntil(this.destroy$)).subscribe({
       next: (data) => {
         this.grafico5 = data;
@@ -148,6 +174,9 @@ export class DashboardComponent implements OnInit {
 
 
     // map-chart.service.ts
+
+    this.view6 = this.mapChartService.getDefaultMapChartConfig().view6;
+    this.colorScheme = this.mapChartService.getDefaultMapChartConfig().colorScheme;
 
     this.mapChartService.getMapData().pipe(takeUntil(this.destroy$)).subscribe({
       next: (data) => {

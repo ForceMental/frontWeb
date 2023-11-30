@@ -1,6 +1,5 @@
 .admin-panel {
-  background: linear-gradient(to right, #1565C0, #21f333); 
-  color: #ffffff;
+  background: linear-gradient(to bottom, #0c2a5d, #13999b);
   min-height: 100vh;
   width: 100%;
   padding: 30px;
@@ -8,19 +7,24 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+
   text-align: center;
 }
 
 .admin-heading {
   font-size: 2.5rem;
-  font-weight: 700;
+  font-weight: bold;
   margin-bottom: 2rem;
-  
+  color: #ffffff;
+  font-weight: bold;
+  font-family: 'Lora', serif;
+
+
 }
 
 .nav-container {
-  
+
   margin-top: 4rem;
   width: 100%;
   max-width: 500px;
@@ -44,10 +48,12 @@
   margin-right: 10px; /* Ajusta el espacio entre el icono y el texto */
   display: flex;
   align-items: center; /* Alinea el icono verticalmente con el texto */
+  color: #ffffff;
 }
 
 .letra {
   font-size: 1.5rem;
+  color: #ffffff;
 }
 
 .footer-logo {
