@@ -20,6 +20,7 @@ export class VentasComponent implements OnInit {
 
   cargarVentas(): void {
     this.ventasService.getVentas().subscribe((data: any[]) => {
+      console.log(data)
       this.ventas = data.map(venta => ({
         ...venta,
         nombreCliente: venta.cliente_info ? `${venta.cliente_info.nombre} ${venta.cliente_info.apellido}` : 'N/A',
@@ -31,7 +32,7 @@ export class VentasComponent implements OnInit {
       this.ventasFiltradas = this.ventas;
     });
   }
-  
+
 
   filtrarPorEstado(estado: string): void {
     this.estadoSeleccionado = estado;

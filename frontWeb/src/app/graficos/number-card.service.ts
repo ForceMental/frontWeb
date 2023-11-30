@@ -11,7 +11,7 @@ export class NumberCardService {
 
   getNumberCardConfig(): any {
     return {
-      view: [700, 400],
+      view5: [1000, 400],
       scheme: {
         domain: ['#0c2a5d', '#13999b','#4d7864','#60390d','#ffd962'],
       },

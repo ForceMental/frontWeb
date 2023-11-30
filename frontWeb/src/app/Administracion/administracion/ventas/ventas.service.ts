@@ -8,7 +8,7 @@ import { throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class VentasService {
-  private apiUrl = 'http://107.22.174.168:8030/api/Listaventas'; // URL de tu API
+  private apiUrl = 'https://forcemental.azure-api.net/venta/api/Listaventas/'; // URL de tu API
 
   constructor(private http: HttpClient) { }
 

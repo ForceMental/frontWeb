@@ -37,11 +37,11 @@ table {
     box-shadow: 0 6px 10px -5px rgba(0,0,0,0.15);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .toolbar {
         flex-direction: column;
     }
-    
+
     .mat-form-field {
         max-width: none;
     }

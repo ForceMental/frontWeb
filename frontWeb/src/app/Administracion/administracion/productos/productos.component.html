@@ -15,8 +15,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let producto of productos">
-        <td><p>{{ producto.nombre_producto }}</p></td>
-        <td>{{ producto.stock_producto}}</td>
+        <td class="items">{{ producto.nombre_producto }}</td>
+        <td class="items">{{ producto.stock_producto}}</td>
         <td class="acciones-celda">
           <button class="btn btn-editar" (click)="editarProducto(producto)">Editar</button>
           <button class="btn btn-eliminar" (click)="eliminarProducto(producto.id_producto)">Eliminar</button>

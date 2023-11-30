@@ -11,10 +11,11 @@ export class CircularChartService {
   constructor(private service: DataService){
 
   }
-  getDefaultChartConfig(): any {
+
+  getDefaultCircularChartConfig(): any {
     // Configuración predeterminada para el gráfico circular
     return {
-      view: [700, 400],
+      view1: [1000, 400],
       gradient: true,
       showLegend: true,
       showLabels: true,
@@ -24,7 +25,9 @@ export class CircularChartService {
       },
     };
   }
-  
+
+
+
   getSampleChartData(): Observable<any[]> {
     return this.service.obtenerDatosServiceVenta().pipe(
       map((datos: any) => {

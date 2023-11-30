@@ -11,6 +11,20 @@ export class MapChartService {
 
   constructor(private service: DataService) {}
 
+  getDefaultMapChartConfig(): any {
+
+    return {
+      view6: [1000, 400],
+      gradient: true,
+      showLegend: true,
+      showLabels: true,
+      isDoughnut: false,
+      colorScheme: {
+        domain: ['#0c2a5d', '#13999b','#4d7864','#60390d','#ffd962'],
+      },
+    };
+  }
+
   getMapData(): Observable<any[]> {
     // Realiza la solicitud HTTP para obtener los datos de servicio
     return this.service.obtenerDatosService().pipe(

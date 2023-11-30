@@ -2,20 +2,22 @@
 
 .clientes-container {
   padding: 20px;
-  background-color: #f7f2f8;
+  background: linear-gradient(to bottom, #137b9b 10%,#0c2a5d 90%, );
   border-radius: 8px;
-  
+
+
 }
 
 .titulo {
-  color: #333;
+
   font-size: 24px;
   margin-top: 2rem;
   text-align: center;
-  font-family:'Times New Roman', Times, serif;
   font-size: 3rem;
   font-weight: bold;
-  
+  color: #ffffff;
+  font-family: 'Lora', serif;
+
 }
 
 
@@ -36,7 +38,7 @@
 .acciones{
 
   margin-bottom: 1rem;
-  
+
 
 }
 .volver-button {

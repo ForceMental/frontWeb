@@ -12,7 +12,7 @@ export class PieChartService {
 
   getPieChartConfig(): any {
     return {
-      view: [700, 400],
+      view2: [1000, 400],
       gradient: false, // Quita la declaración de tipo boolean
       animations: true,
 
@@ -28,10 +28,10 @@ export class PieChartService {
       map((data: any) => {
         // Accede a los datos del contador_finalizada
         const contadorFinalizada = data.contador_finalizada;
-  
+
         // Formatea los datos para el gráfico de acuerdo a tus necesidades
         const chartData: any[] = [];
-  
+
         for (const key in contadorFinalizada) {
           if (contadorFinalizada.hasOwnProperty(key)) {
             const status = key === "True" ? "Completado" : "No Completado";
@@ -42,7 +42,7 @@ export class PieChartService {
             });
           }
         }
-  
+
         return chartData;
       })
     );
