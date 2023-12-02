@@ -20,4 +20,16 @@ export class VentasService {
     return throwError(error);
   }
 
+  aprobarVenta(ventaId: number): Observable<any> {
+    // Lógica para enviar una solicitud HTTP para aprobar la venta
+    // Asegúrate de usar la URL y método HTTP correctos
+    return this.http.post<any>(`${this.apiUrl}/ventas/aprobar/${ventaId}`, {});
+  }
+
+  cancelarVenta(ventaId: number): Observable<any> {
+    // Lógica para enviar una solicitud HTTP para cancelar la venta
+    // Asegúrate de usar la URL y método HTTP correctos
+    return this.http.post<any>(`${this.apiUrl}/ventas/cancelar/${ventaId}`, {});
+  }
+
 }

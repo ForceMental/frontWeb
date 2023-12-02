@@ -3,5 +3,5 @@ export interface Producto {
     nombre_producto: string;
     stock_producto: number;
     categoria: number
-    // Añade aquí más propiedades según sea necesario
+    
   }
