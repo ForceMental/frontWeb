@@ -1,6 +1,7 @@
 // vertical-bar-chart.service.ts
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { DataService } from '../services/data.service';
 
 @Injectable({
@@ -10,15 +11,18 @@ export class VerticalBarChartService {
   grafico4: any[] = [];
   constructor(private service: DataService) { }
 
-  getVerticalBarConfig(isMobile: boolean): any {
+  getVerticalBarConfig(): any {
+    const screenWidth = window.innerWidth;
+    const isMobile = screenWidth < 400; // ajusta este valor según tus necesidades
+
     return {
-      view4: isMobile ? [500, 400] : [1000, 400],
+      view4: isMobile ? [400, 400] : [600, 400],
       colorScheme: {
         domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-      }
-      // otras configuraciones según sea necesario...
+      },
     };
   }
+
 
 
   getVerticalBarData(): Observable<any[]> {

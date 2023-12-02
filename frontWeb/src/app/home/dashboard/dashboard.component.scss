@@ -107,6 +107,10 @@ element.style {
   font-size: 14px !important;
 
 }
+.ngx-charts .label {
+  font-size: 30px !important;
+  font-weight: 400 !important;
+}
 
 /*grafico 4*/
 
@@ -114,32 +118,22 @@ element.style {
 
 /* Estilos específicos para dispositivos móviles */
 @media only screen and (max-width: 767px) {
-  .dashboard-card {
+  .dashboard-card-content {
     /* Estilos específicos para dispositivos móviles */
     padding: 5px; /* Ajusta el padding para dispositivos móviles */
     margin-bottom: 10px; /* Ajusta el margen para dispositivos móviles */
   }
 
-  .chart-container1,
-  .chart-container2,
-  .chart-container3,
-  .chart-container4,
-  .chart-container5,
-  .chart-container6 {
-    width: 100%; /* Asegura que los gráficos ocupen el ancho completo de la pantalla en dispositivos móviles */
+
+
+  .chart-container4 {
+      width: 100%;  // O el ancho que desees
+      height: 100%; // O la altura que desees
   }
 
-  /* Otros estilos específicos para dispositivos móviles */
-  .advanced-pie-legend .total-value {
-    font-size: 30px !important;
-  }
 
-  .advanced-pie-legend .total-label {
-    font-size: 30px !important;
-    margin-bottom: 10px !important;
-    margin-top: 10px !important;
-    opacity: 0.9 !important;
-  }
+
+
 
 }
 

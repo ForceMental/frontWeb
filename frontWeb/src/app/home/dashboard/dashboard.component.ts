@@ -11,6 +11,7 @@ import { NewPieChartService } from 'src/app/graficos/new-pie-chart.service';
 import { LegendPosition } from '@swimlane/ngx-charts';
 
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -37,10 +38,7 @@ export class DashboardComponent implements OnInit {
   grafico6: any[] = [];
 
 
-
-
-
-
+  isMobile: boolean = false;
   circularChartVisible: boolean = true;
   barChartVisible: boolean = true;
   pieChartVisible: boolean = true;
@@ -50,25 +48,28 @@ export class DashboardComponent implements OnInit {
 
 
 
-  gradient: boolean = false;
+  gradient: boolean = true;
   showLegend:boolean = true;
   showLabels: boolean = true;
   cardColor: string = '#232837';
   showChart: boolean = true;
   isDoughnut: boolean = true;
   legendPosition: LegendPosition = 'below' as LegendPosition;
+  animation: boolean = true;
 
 
   showXAxis: boolean = true;
   showXAxisLabel: boolean = true;
   showYAxisLabel: boolean = true;
   showYAxis : boolean = true;
-  xAxisLabel: string = '';
-  yAxisLabel: string = '';
+  xAxisLabel: string = 'Productos';
+  yAxisLabel: string = 'Cantidad';
   animations: boolean = true;
   legend: boolean = true;
   xAxis: boolean = true;
   yAxis: boolean = true;
+  legendTitle4: string = 'Nombres';
+  legendTitle3: string = 'Visitas';
 
   multi: any[] = [];
 
@@ -138,8 +139,9 @@ export class DashboardComponent implements OnInit {
 
       // vertical-bar-chart.service.ts
 
-const isMobile = this.breakpointObserver.isMatched(Breakpoints.Handset);
-const verticalBarConfig = this.verticalBarChartService.getVerticalBarConfig(isMobile);
+
+
+const verticalBarConfig = this.verticalBarChartService.getVerticalBarConfig();
 
 this.view4 = verticalBarConfig.view4;
 this.colorScheme = verticalBarConfig.colorScheme;
@@ -153,6 +155,9 @@ this.verticalBarChartService.getVerticalBarData().pipe(takeUntil(this.destroy$))
     console.error('Error obteniendo los datos:', error);
   }
 });
+
+
+
 
 
 
@@ -193,18 +198,20 @@ this.verticalBarChartService.getVerticalBarData().pipe(takeUntil(this.destroy$))
 
 
 
+
+
   }
 
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       if (matches) {
         return [
-          { title: 'Total de Visitas', cols: 1, rows: 1, circularChartVisible: true, pieChartVisible: false, newPieChartVisible: false, barChartVisible: false, numberChartVisible: false, mapChartVisible: false },
-          { title: 'Visitas Finalizadas', cols: 1, rows: 1, circularChartVisible: false, pieChartVisible: true, newPieChartVisible: false, barChartVisible: false,  numberChartVisible: false, mapChartVisible: false },
-          { title: 'Visitas Reprogramadas', cols: 1, rows: 1, circularChartVisible: false, pieChartVisible: false, newPieChartVisible: true,barChartVisible: false, numberChartVisible: false, mapChartVisible: false },
-          { title: 'Ventas de Productos', cols: 1, rows: 1, circularChartVisible: false, pieChartVisible: false, newPieChartVisible: false,barChartVisible: true, numberChartVisible: false, mapChartVisible: false },
-          { title: 'Conteo de Ventas Ejecutivo', cols: 1, rows: 1, circularChartVisible: false, pieChartVisible: false, newPieChartVisible: false,barChartVisible: false, numberChartVisible:  true, mapChartVisible: false },
-          { title: 'Total de visitas de Ejecutivo', cols: 1, rows: 1, circularChartVisible: false, pieChartVisible: false, newPieChartVisible: false,barChartVisible: false, numberChartVisible: false, mapChartVisible: true },
+          { title: 'Total de Visitas', cols: 2, rows: 1, circularChartVisible: true, pieChartVisible: false, newPieChartVisible: false, barChartVisible: false, numberChartVisible: false, mapChartVisible: false },
+          { title: 'Visitas Finalizadas', cols: 2, rows: 1, circularChartVisible: false, pieChartVisible: true, newPieChartVisible: false, barChartVisible: false,  numberChartVisible: false, mapChartVisible: false },
+          { title: 'Visitas Reprogramadas', cols: 2, rows: 1, circularChartVisible: false, pieChartVisible: false, newPieChartVisible: true,barChartVisible: false, numberChartVisible: false, mapChartVisible: false },
+          { title: 'Ventas de Productos', cols: 2, rows: 1, circularChartVisible: false, pieChartVisible: false, newPieChartVisible: false,barChartVisible: true, numberChartVisible: false, mapChartVisible: false },
+          { title: 'Conteo de Ventas Ejecutivo', cols: 2, rows: 1, circularChartVisible: false, pieChartVisible: false, newPieChartVisible: false,barChartVisible: false, numberChartVisible:  true, mapChartVisible: false },
+          { title: 'Total de visitas de Ejecutivo', cols: 2, rows: 1, circularChartVisible: false, pieChartVisible: false, newPieChartVisible: false,barChartVisible: false, numberChartVisible: false, mapChartVisible: true },
 
         ];
       }

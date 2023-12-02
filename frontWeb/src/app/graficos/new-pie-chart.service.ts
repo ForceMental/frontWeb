@@ -14,11 +14,11 @@ export class NewPieChartService {
   getDefaultNewPieChartConfig(): any {
 
     return {
-      view3: [700, 300],
+      view3: [700, 400],
       gradient: true,
       showLegend: true,
       showLabels: true,
-      isDoughnut: false,
+
       colorScheme: {
         domain: ['#0c2a5d', '#13999b','#4d7864','#60390d','#ffd962'],
       },

@@ -85,14 +85,8 @@
 }
 
 /* Estilos específicos para dispositivos móviles */
-@media only screen and (max-width: 767px) {
-  .sidenav {
-    width: 100%; /* Hacer la barra lateral ocupar el 100% del ancho en dispositivos móviles */
-  }
+@media only screen and (max-width: 600px) {
 
-  .sidenav-container {
-    height: 100%; /* Ajustar la altura al 100% en dispositivos móviles */
-  }
 
   .title_dashboard,
   .title_menu {
