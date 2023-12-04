@@ -86,18 +86,22 @@ export class NuevoClienteDialogComponent implements OnInit {
   onSubmit(): void {
     if (this.nuevoClienteForm.valid) {
       const formData = this.nuevoClienteForm.value;
-
-      // Asegurarse de que 'comuna' sea un ID numérico
-      const comunaId = typeof formData.comuna === 'object' ? formData.comuna.id : formData.comuna;
-      
+  
+      // Preparar el RUT en el formato esperado por el backend
+      const rutFormateado = formData.rut.replace(/\./g, ''); // Eliminar puntos
+  
+      // Crear el objeto con la estructura esperada por el backend
       const clienteParaEnviar = {
-        ...formData,
-        comuna: comunaId
+        nombre: formData.nombre,
+        apellido: formData.apellido,
+        telefono: formData.telefono,
+        correo_electronico: formData.correo_electronico,
+        direccion: formData.direccion,
+        comuna: formData.comuna, // Asegúrate de que sea un ID numérico
+        rut: rutFormateado
       };
-
-      // Registro para depuración
-      console.log("Datos del cliente a enviar:", clienteParaEnviar);
-
+  
+      // Enviar los datos
       this.clientesService.addCliente(clienteParaEnviar).subscribe({
         next: (clienteCreado) => {
           console.log('Cliente creado exitosamente:', clienteCreado);

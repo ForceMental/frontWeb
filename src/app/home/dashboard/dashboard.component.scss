@@ -1,0 +1,74 @@
+.mat-grid-list {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.dashboard-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 20px; /* Espacio entre las tarjetas */
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+@media screen and (max-width: 767px) {
+  
+  .dashboard-card {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+ 
+  .mat-grid-list {
+    max-width: 1200px;
+    width: 100%;
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  
+  .dashboard-card .chart-container1,
+  .dashboard-card .chart-container2,
+  .dashboard-card .chart-container3,
+  .dashboard-card .chart-container4,
+  .dashboard-card .chart-container5,
+  .dashboard-card .chart-container6,
+  .dashboard-card .chart-container7{
+    width: 100%;
+    height: 40vh; 
+  }
+
+  
+  .advanced-pie-legend .total-value {
+    font-size: 18px !important;
+  }
+
+  .advanced-pie-legend .legend-items-container .legend-items .legend-item .item-percent {
+    font-size: 50px !important;
+    margin-top: 5px !important;
+    position: center !important; 
+  }
+}
+
+
+
+
+  
+
+
+

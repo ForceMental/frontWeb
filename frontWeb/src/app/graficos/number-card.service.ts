@@ -6,14 +6,14 @@ import { DataService } from '../services/data.service';
   providedIn: 'root',
 })
 export class NumberCardService {
-  grafico4: any[] = [];
+  grafico5: any[] = [];
   constructor(private service: DataService) { }
 
   getNumberCardConfig(): any {
     return {
-      view: [700, 400],
+      view5: [1000, 400],
       scheme: {
-        domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+        domain: ['#0c2a5d', '#13999b','#4d7864','#60390d','#ffd962'],
       },
       gradient: false,
       animations: true,
@@ -21,7 +21,7 @@ export class NumberCardService {
   }
 
   getNumberCardData(): Observable<any[]> {
-    return this.service.obtenerDatos().pipe(
+    return this.service.obtenerDatosServiceVenta().pipe(
       map((data: any) => {
         const conteoEjecutivoId = data.conteo_ejecutivo_id;
         const chartData: any[] = [];

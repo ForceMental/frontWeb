@@ -1,17 +1,28 @@
 .sidenav-container {
   height: 90%;
-  
 }
 
 .sidenav {
   width: 200px;
   text-align: center;
-  background-color: #1a5c83;
+  background: linear-gradient(to bottom, #0c2a5d, #13999b);
 }
 
-.perfil h3 {
+.title_menu {
+  background-color: #0c2a5d;
+  color: #ffffff;
+  font-family: 'Lora', serif;
+}
+
+.perfil  {
   color: #ffffff;
   margin: 10px 0 5px;
+}
+
+.nombre_avatar{
+  margin-top: -1rem;
+  color: #ffffff;
+
 }
 
 .lista .menu-button {
@@ -36,45 +47,64 @@
   flex-direction: column;
 }
 
-
 .imagen_logo {
-  width: 80%; 
+  width: 80%;
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.title_dashboard {
+.title_dashboard,
+.title_menu {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   font-size: 2rem;
   color: #ffffff;
-  font-style: oblique;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ajusta los valores según tus preferencias */
+  font-family: 'Lora', serif;
+
 }
 
-.title_menu{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+.title_menu {
   font-size: 1.5rem;
-  
-  
-  
-
 }
 
-.body{
-  text-align: center;
-  
+.boton-menu {
+  color: #ffffff;
 }
 
-.toolbar{
+.body {
   text-align: center;
-  background-color: #20a0d8;
-  
+}
+
+.toolbar {
+  text-align: center;
+  background-color: #0c2a5d;
+}
+
+/* Estilos específicos para dispositivos móviles */
+@media only screen and (max-width: 600px) {
+
+
+  .title_dashboard,
+  .title_menu {
+    font-size: 1.5rem; /* Reducir el tamaño de fuente en dispositivos móviles */
+  }
+  .imagen_avatar{
+    margin-top: 3rem;
+    width: 150px;
+  }
+
+  .nombre_avatar{
+    margin-top: -1rem;
+    color: #ffffff;
+
+  }
+
+  .imagen_logo {
+    width: 70%; /* Asegurar que la imagen del logo ocupe el 100% del ancho en dispositivos móviles */
+  }
+
 }

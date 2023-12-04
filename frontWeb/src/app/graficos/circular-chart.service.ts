@@ -11,22 +11,25 @@ export class CircularChartService {
   constructor(private service: DataService){
 
   }
-  getDefaultChartConfig(): any {
+
+  getDefaultCircularChartConfig(): any {
     // Configuración predeterminada para el gráfico circular
     return {
-      view: [700, 400],
+      view1: [1000, 400],
       gradient: true,
       showLegend: true,
       showLabels: true,
       isDoughnut: false,
       colorScheme: {
-        domain: ['#A10A28', '#C7B42C', '#AAAAAA'],
+        domain: ['#0c2a5d', '#13999b','#4d7864','#60390d','#ffd962'],
       },
     };
   }
 
+
+
   getSampleChartData(): Observable<any[]> {
-    return this.service.obtenerDatos().pipe(
+    return this.service.obtenerDatosServiceVenta().pipe(
       map((datos: any) => {
         return [
           { name: 'Aprobada', value: datos.conteo_estado_venta.A },

@@ -1,0 +1,87 @@
+.sidenav-container {
+  height: 90%;
+  
+}
+
+.sidenav {
+  width: 200px;
+  text-align: center;
+  background: linear-gradient(to bottom, #0c2a5d, #13999b);
+}
+.title_menu{
+  background-color: #0c2a5d;
+  color:#ffffff;
+  font-family: 'Lora', serif;
+  
+  
+
+}
+
+.perfil h3 {
+  color: #ffffff;
+  margin: 10px 0 5px;
+}
+
+.lista .menu-button {
+  color: #ffffff;
+  transition: background-color 0.3s, color 0.3s; /* Transiciones para suavizar el cambio */
+}
+
+.lista .menu-button:hover {
+  background-color: #ffffff;
+  color: #1a5c83; /* Cambio de color del texto al pasar el puntero */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.imagen_avatar {
+  width: 100px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.imagen_logo {
+  width: 80%; 
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.title_dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 2rem;
+  color: #ffffff;
+  font-family: 'Lora', serif;
+  
+  
+}
+
+.title_menu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 1.5rem;
+  
+
+}
+
+.body{
+  text-align: center;
+  
+}
+
+.toolbar{
+  text-align: center;
+  background-color: #0c2a5d;
+  
+}

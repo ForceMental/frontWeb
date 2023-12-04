@@ -7,12 +7,12 @@ import { DataService } from '../services/data.service';
   providedIn: 'root',
 })
 export class PieChartService {
-  grafico3: any[] = [];
+  grafico2: any[] = [];
   constructor(private service: DataService) { }
 
   getPieChartConfig(): any {
     return {
-      view: [700, 400],
+      view2: [1000, 400],
       gradient: false, // Quita la declaración de tipo boolean
       animations: true,
 
@@ -24,18 +24,21 @@ export class PieChartService {
 
   getPieData(): Observable<any[]> {
     // Realiza la solicitud HTTP para obtener los datos de servicio_venta
-    return this.service.obtenerDatos().pipe(
+    return this.service.obtenerDatosService().pipe(
       map((data: any) => {
+        // Accede a los datos del contador_finalizada
+        const contadorFinalizada = data.contador_finalizada;
+
         // Formatea los datos para el gráfico de acuerdo a tus necesidades
-        const sumaProductos = data.suma_productos;
         const chartData: any[] = [];
 
-        for (const key in sumaProductos) {
-          if (sumaProductos.hasOwnProperty(key)) {
-            const producto = sumaProductos[key];
+        for (const key in contadorFinalizada) {
+          if (contadorFinalizada.hasOwnProperty(key)) {
+            const status = key === "True" ? "Completado" : "No Completado";
+            const count = contadorFinalizada[key];
             chartData.push({
-              name: producto.nombre,
-              value: producto.cantidad
+              name: status,
+              value: count
             });
           }
         }

@@ -9,17 +9,17 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  obtenerDatos(): Observable<any> {
+  obtenerDatosServiceVenta(): Observable<any> {
     const url = 'https://forcemental.azure-api.net/dashboard/api/service_venta';
 
     return this.http.get(url);
   }
 
-  obtenerDatosSegundaUrl(): Observable<any> {
-    
+  obtenerDatosService(): Observable<any> {
+
     const url = 'https://forcemental.azure-api.net/dashboard/api/service';
     return this.http.get(url);
   }
-  
+
 
 }
