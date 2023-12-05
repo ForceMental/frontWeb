@@ -41,8 +41,8 @@
         <!-- Muestra el gráfico de barras si barChartVisible es true -->
         <ng-container *ngIf="card.barChartVisible && barChartVisible">
           <div class="chart-container4">
-            <ngx-charts-bar-vertical [view]="view4" [scheme]="colorScheme" [results]="grafico4" [gradient]="gradient"
-              [legendTitle]="legendTitle4" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
+            <ngx-charts-bar-vertical [view]="view4" [scheme]="colorScheme" [results]="grafico4"
+              [legendTitle]="legendTitle4" [xAxis]="showXAxis" [yAxis]="showYAxis"
               [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
               [yAxisLabel]="yAxisLabel" [animations]="animation" [ngStyle]="{ 'width.%': view4[0], 'height.%': view4[1] }">
 
@@ -71,6 +71,9 @@
             </ngx-charts-tree-map>
           </div>
         </ng-container>
+
+
+
 
       </mat-card-content>
     </mat-card>

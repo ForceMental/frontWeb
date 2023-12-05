@@ -16,7 +16,7 @@ export class VerticalBarChartService {
     const isMobile = screenWidth < 400; // ajusta este valor según tus necesidades
 
     return {
-      view4: isMobile ? [400, 400] : [600, 400],
+      view4: isMobile ? [400, 400] : [1000, 400],
       colorScheme: {
         domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
       },

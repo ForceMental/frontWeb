@@ -1,6 +1,6 @@
 /* ventas.component.scss */
 .ventas-container {
-    background-color: #f7f7f7; /* Igual que en productos */
+  background: linear-gradient(to bottom, #137b9b 10%,#0c2a5d 90%, );
     padding: 20px;
     border-radius: 8px;
     display: flex;
@@ -9,14 +9,14 @@
 }
 
 .titulo {
-    color: #333;
-    font-size: 24px;
-    margin-top: 2rem;
-    text-align: center;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 3rem;
-    font-weight: bold;
-    text-align: center;
+  font-size: 24px;
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ffffff; /* Color del texto (blanco en este caso) */
+  font-family: 'Lora', serif;
+  text-shadow: 2px 2px #000; /* Desplazamiento x, desplazamiento y, radio y color del borde */
 }
 
 .toolbar {
@@ -28,20 +28,61 @@
     margin-bottom: 20px;
 }
 
-.boton-volver {
-    margin-bottom: 10px;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    background-color: #008CBA;
-    color: white;
-    transition: background-color 0.3s;
+.volver-button {
+  background-color: #0085c2;
+  color: white;
+  padding: 10px 15px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 1rem;
 
-    &:hover {
-        background-color: #007ba7;
-    }
+  &:hover {
+    background-color: #0b5e85;
+  }
+}
+
+.botones-acciones {
+  margin-bottom: 1rem;
+  display: flex; /* Agrega esta línea para usar flexbox */
+  margin-top: 1rem;
+
+}
+
+.boton-aprobar {
+  background-color: #317588;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #105061;
+  }
+}
+
+.boton-cancelar {
+  background-color: #ff453e;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #da190b;
+  }
+}
+
+.filtro-estado{
+  color: #000;
 }
 
 .mat-form-field {
