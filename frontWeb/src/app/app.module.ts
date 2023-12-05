@@ -38,6 +38,9 @@ import { ConfirmDialogComponent } from './Administracion/administracion/clientes
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NuevoClienteDialogComponent } from './Administracion/administracion/clientes/nuevo-cliente-dialog/nuevo-cliente-dialog.component';
 import { VentasComponent } from './Administracion/administracion/ventas/ventas.component';
+import { DetalleProductosDialogComponent } from './Administracion/administracion/productos/detalle-productos-dialog/detalle-productos-dialog.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateEstadoPipe } from './Administracion/administracion/ventas/translate-estado.pipe';
 
 @NgModule({
   declarations: [
@@ -60,6 +63,8 @@ import { VentasComponent } from './Administracion/administracion/ventas/ventas.c
     ConfirmDialogComponent,
     NuevoClienteDialogComponent,
     VentasComponent,
+    DetalleProductosDialogComponent,
+    TranslateEstadoPipe,
     // No incluyas módulos en declarations
   ],
   imports: [
@@ -86,6 +91,7 @@ import { VentasComponent } from './Administracion/administracion/ventas/ventas.c
     ReactiveFormsModule,
     MatSnackBarModule,
     FormsModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

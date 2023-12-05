@@ -54,10 +54,35 @@
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 600px; /* Asegura un mínimo de ancho para la tabla */
-}
+    // Sombra para dar profundidad
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+    th, td {
+      padding: 12px 8px; // Espaciado para legibilidad
+      transition: background-color 0.3s ease; // Transición suave para el hover
+    }
+
+    tr:hover {
+      background-color: #f5f5f5; // Color de fondo al pasar el mouse
+    }
+  }
+
+  .mat-icon-button {
+    margin: 0 4px; // Espaciado alrededor de los botones de icono
+    transition: transform 0.3s ease; // Transición suave al hacer clic
+
+    &:hover {
+      transform: scale(1.1); // Aumenta ligeramente el tamaño al pasar el mouse
+    }
+  }
+
+  // Indicadores de estado con colores
+  .estado-venta {
+    &.aprobada { color: #4caf50; }
+    &.pendiente { color: #ff9800; }
+    &.rechazada { color: #f44336; }
+  }
+
 
 th, td {
     border: 1px solid #ddd;
