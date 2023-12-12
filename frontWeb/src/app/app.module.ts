@@ -29,7 +29,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { CommonModule } from '@angular/common'; // 
+import { CommonModule } from '@angular/common'; //
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProductoEditDialogComponent } from './Administracion/administracion/productos/producto-edit-dialog/producto-edit-dialog.component';
@@ -69,7 +69,7 @@ import { TranslateEstadoPipe } from './Administracion/administracion/ventas/tran
   ],
   imports: [
     // Tus módulos aquí
-    CommonModule, 
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -95,7 +95,7 @@ import { TranslateEstadoPipe } from './Administracion/administracion/ventas/tran
   ],
   providers: [],
   bootstrap: [AppComponent]
-  
+
 
 })
 export class AppModule { }

@@ -8,9 +8,9 @@ import { EjecutivoVentasComponent } from './stats/ejecutivo-ventas/ejecutivo-ven
 import { ProductoComponent } from './stats/producto/producto.component';
 import { VentasSectorizadasComponent } from './stats/ventas-sectorizadas/ventas-sectorizadas.component';
 import { VisitasComponent } from './stats/visitas/visitas.component';
-import { AdministracionComponent } from './Administracion/administracion/administracion.component';  
-import { ClientesComponent } from './Administracion/administracion/clientes/clientes.component'; 
-import { ProductosComponent } from './Administracion/administracion/productos/productos.component';  
+import { AdministracionComponent } from './Administracion/administracion/administracion.component';
+import { ClientesComponent } from './Administracion/administracion/clientes/clientes.component';
+import { ProductosComponent } from './Administracion/administracion/productos/productos.component';
 import { VentasComponent } from './Administracion/administracion/ventas/ventas.component';
 
 const routes: Routes = [
@@ -26,8 +26,8 @@ const routes: Routes = [
   { path: 'administracion', component: AdministracionComponent },
   { path: 'productos', component: ProductoComponent },
   { path: 'ventas', component: VentasComponent },
-  
-  
+
+
 ];
 
 @NgModule({

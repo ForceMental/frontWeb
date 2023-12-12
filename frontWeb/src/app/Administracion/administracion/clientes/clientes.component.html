@@ -1,10 +1,18 @@
 <!-- clientes.component.html -->
 <div class="clientes-container">
     <h2 class="titulo">Clientes</h2>
-   <div class="acciones">
-    <button (click)="abrirDialogoNuevoCliente()" class="agregar-button">Agregar Nuevo Cliente</button>
-    <button routerLink="/administracion" class="volver-button">Volver al Panel de Administración</button>
-  </div>
+
+
+    <div class="acciones">
+      <button class="agregar-button" (click)="abrirDialogoNuevoCliente()">
+        <mat-icon class="agregar-icon">add</mat-icon>Añadir Producto
+      </button>
+      <button class="volver-button" routerLink="/administracion">
+        <mat-icon class="volver-icon">❮</mat-icon>Panel de Administración
+      </button>
+    </div>
+
+
 
     <!-- Tabla de clientes -->
     <mat-table [dataSource]="clientes" class="mat-elevation-z8">

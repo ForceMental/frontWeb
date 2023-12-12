@@ -31,19 +31,28 @@
 .volver-button {
   background-color: #0085c2;
   color: white;
-  padding: 10px 15px;
-  margin-left: 10px;
+  padding: 10px 12px;  // Ajusté el padding para dar más espacio
+  margin-left: 5px;
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
   transition: background-color 0.3s;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  display: flex;  // Para alinear verticalmente el icono y el texto
+  align-items: baseline;  // Ajusté la alineación vertical para que la flecha esté alineada con el texto
   font-size: 1rem;
+
+  .volver-icon {
+    margin-right: 5px;  // Ajusté el margen derecho del icono
+    font-size: 1rem;  // Puedes ajustar el tamaño del icono según tus preferencias
+  }
 
   &:hover {
     background-color: #0b5e85;
   }
 }
+
+
 
 .botones-acciones {
   margin-bottom: 1rem;

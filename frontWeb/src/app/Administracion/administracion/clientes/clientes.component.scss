@@ -20,20 +20,30 @@
   text-shadow: 2px 2px #000; /* Desplazamiento x, desplazamiento y, radio y color del borde */
 }
 
-.acciones{
+.acciones {
+  margin-bottom: 20px;
+  display: flex;
 
-  margin-bottom: 1rem;
-
+  .volver-icon {
+    margin-right: 5px;
+    font-size: 1rem;
+    vertical-align: middle;
+  }
 }
 
-.agregar-button {
-  background-color:  #18960a;
+.agregar-button,
+.volver-button {
+  display: flex;
+  align-items: center;
+  background-color: #18960a;
   color: white;
   padding: 10px 15px;
+  margin-left: 10px;
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
   transition: background-color 0.3s;
+
 
   &:hover {
     background-color: #127c07;
@@ -42,18 +52,13 @@
 
 .volver-button {
   background-color: #0085c2;
-  color: white;
-  padding: 10px 15px;
-  margin-left: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
 
   &:hover {
     background-color: #0b5e85;
   }
 }
+
+
 
 
 .mat-table {

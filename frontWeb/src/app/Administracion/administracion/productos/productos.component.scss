@@ -20,27 +20,39 @@
 
 
 
-
-
-
-
 .acciones {
   margin-bottom: 20px;
+  display: flex;  // Hace que los botones estén en línea
+
+
+  .volver-icon {
+    margin-right: 5px;
+    font-size: 1rem;
+    vertical-align: middle;
+  }
+  .agregar-icon {
+    margin-right: 5px;
+    font-size: 1rem;
+
+
+  }
 
   .btn {
-    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 10px 12px;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
-    font-size: 16px;
     transition: background-color 0.3s;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    align-items: baseline;
 
 
     &-accion {
       background-color:  #18960a;
-      color: white;
-
-
+      margin-right: 5px;  // Añade un margen derecho entre los botones
 
       &:hover {
         background-color: #127c07;
@@ -49,9 +61,6 @@
 
     &-volver {
       background-color: #0085c2;
-      color: white;
-      margin-left: 10px;
-
 
 
       &:hover {
@@ -60,6 +69,8 @@
     }
   }
 }
+
+
 
 .items{
   background-color: #f2f2f2;

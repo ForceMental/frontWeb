@@ -2,8 +2,12 @@
 <div class="productos-container" >
   <h2 class="titulo">Productos</h2>
   <div class="acciones">
-      <button class="btn btn-accion" (click)="nuevoProducto()">Añadir Producto</button>
-      <button class="btn btn-volver" routerLink="/administracion">Volver al Panel de Administración</button>
+      <button class="btn btn-accion" (click)="nuevoProducto()">
+        <mat-icon class="agregar-icon">add</mat-icon>Añadir Producto
+      </button>
+      <button class="btn btn-volver" routerLink="/administracion">
+        <mat-icon class="volver-icon">❮</mat-icon>Panel de Administración
+      </button>
   </div>
   <table class="tabla-productos mat-elevation-z8">
     <thead>
